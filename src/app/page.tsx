@@ -1,8 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
 import Footer from "@/components/Footer";
-import CardEducation from "@/components/CardEducation";
 import { IconCloud } from "@/components/magicui/icon-cloud";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid"; // ⬅️ import dulu
 import {
@@ -19,8 +17,19 @@ import {
   DiLinux,
   DiVisualstudio,
 } from "react-icons/di";
+import Certifications from "@/components/Certificate";
+import Education from "@/components/Education";
 
 export default function Home() {
+  const pendidikanData = [
+    {
+      tahun: "2022 - 2026",
+      institusi: "Indraprasta PGRI University",
+      logo: "/image.png",
+      jurusan: "Informatics Engineering",
+      keterangan: "IPK 3.2/4.0",
+    },
+  ];
   return (
     <main className="relative flex flex-col min-h-screen bg-white overflow-hidden">
       {/* Background grid */}
@@ -37,8 +46,8 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar />
         <Hero />
-        <About />
-        <CardEducation />
+
+        <Education data={pendidikanData} />
 
         <div className="flex justify-center">
           <IconCloud
@@ -58,6 +67,8 @@ export default function Home() {
             ]}
           />
         </div>
+
+        <Certifications />
 
         <Footer />
       </div>

@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { Dock, DockIcon } from "@/components/magicui/dock";
-import { FaWhatsapp, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaWhatsapp, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
 export default function Navbar() {
   return (
-    <div className="navbar bg-white px-6 sticky top-0 z-50 h-14 flex items-center justify-between">
+    <div
+      className="navbar fixed top-0 left-0 w-full z-50 h-14 flex items-center justify-between 
+      bg-white backdrop-blur-md border-b border-white/30 px-6"
+    >
       {/* Hamburger + Logo (mobile) */}
       <div className="flex items-center gap-2 md:hidden">
         <div className="dropdown">
@@ -28,7 +31,8 @@ export default function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow 
+              bg-base-100 rounded-box w-52"
           >
             <li>
               <Link href="#about">About</Link>
@@ -60,7 +64,7 @@ export default function Navbar() {
 
       {/* Menu desktop di tengah */}
       <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-        <ul className="menu menu-horizontal px-1 gap-6 font-medium text-white">
+        <ul className="menu menu-horizontal px-1 gap-6 font-medium text-black">
           <li>
             <Link href="#about">About</Link>
           </li>
@@ -80,16 +84,36 @@ export default function Navbar() {
       <div className="relative -top-4">
         <Dock>
           <DockIcon>
-            <FaLinkedin />
+            <a
+              href="https://www.linkedin.com/in/rahman-umardi-9a750b25b/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin />
+            </a>
           </DockIcon>
           <DockIcon>
-            <FaGithub />
+            <a
+              href="https://github.com/RhmnDev14"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </a>
           </DockIcon>
           <DockIcon>
-            <FaWhatsapp />
+            <a
+              href="https://wa.me/6281284502736"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp />
+            </a>
           </DockIcon>
           <DockIcon>
-            <FaInstagram />
+            <a href="mailto:rahmanumardi@gmail.com">
+              <FaEnvelope />
+            </a>
           </DockIcon>
         </Dock>
       </div>
