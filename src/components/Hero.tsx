@@ -13,7 +13,6 @@ import {
   TypingAnimation,
 } from "@/components/magicui/terminal";
 
-// ✅ dynamic import PdfViewer, ssr off
 const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ssr: false,
 });
@@ -21,20 +20,18 @@ const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
 export default function Hero() {
   const [showPdf, setShowPdf] = useState(false);
 
-  // Lock/unlock body scroll saat modal aktif
   useEffect(() => {
     document.body.style.overflow = showPdf ? "hidden" : "auto";
   }, [showPdf]);
 
   return (
-    <div className="relative">
-      {/* Konten Hero utama */}
+    <section className="relative">
       <div
-        className={`hero bg-transparent min-h-screen transition-opacity duration-300 ${
+        className={`hero min-h-screen transition-opacity duration-300 ${
           showPdf ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        <div className="hero-content flex-col lg:flex-row-reverse lg:items-start lg:gap-12">
+        <div className="hero-content flex-col lg:flex-row-reverse lg:items-start lg:gap-12 px-4 md:px-6 lg:px-8">
           <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110">
             <img
               src="/profile.jpeg"
@@ -74,7 +71,6 @@ export default function Hero() {
               </TypingAnimation>
             </Terminal>
 
-            {/* Button untuk buka modal */}
             <InteractiveHoverButton onClick={() => setShowPdf(true)}>
               CV
             </InteractiveHoverButton>
@@ -82,11 +78,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Modal CV */}
       {showPdf && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="relative bg-white rounded-xl shadow-xl w-[90%] h-[80%] md:w-[70%] md:h-[75%] flex flex-col overflow-hidden">
-            {/* Header */}
             <div className="flex items-center justify-between p-3 border-b">
               <ShinyButton onClick={() => setShowPdf(false)}>
                 <IoIosArrowBack />
@@ -102,14 +96,12 @@ export default function Hero() {
                 </ShinyButton>
               </a>
             </div>
-
-            {/* PDF Viewer */}
             <div className="flex-1 overflow-auto p-2">
               <PdfViewer file="/RahmanUmardi.pdf" />
             </div>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }

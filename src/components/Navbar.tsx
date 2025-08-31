@@ -6,9 +6,9 @@ import { FaWhatsapp, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
 export default function Navbar() {
   return (
-    <div
-      className="navbar fixed top-0 left-0 w-full z-50 h-14 flex items-center justify-between 
-      bg-white backdrop-blur-md border-b border-white/30 px-6"
+    <nav
+      className="fixed top-0 left-0 w-full z-50 h-14 flex items-center justify-between 
+      bg-white/80 backdrop-blur-md border-b border-white/30 px-4 md:px-6 lg:px-8"
     >
       {/* Hamburger + Logo (mobile) */}
       <div className="flex items-center gap-2 md:hidden">
@@ -31,8 +31,7 @@ export default function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow 
-              bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <Link href="#about">About</Link>
@@ -49,7 +48,6 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* Logo dekat hamburger */}
         <Link href="/" className="btn btn-ghost normal-case text-xl font-bold">
           MyPortfolio
         </Link>
@@ -80,7 +78,7 @@ export default function Navbar() {
         </ul>
       </div>
 
-      {/* Dock (selalu tampil) */}
+      {/* Dock */}
       <div className="relative -top-4">
         <Dock>
           <DockIcon>
@@ -117,6 +115,6 @@ export default function Navbar() {
           </DockIcon>
         </Dock>
       </div>
-    </div>
+    </nav>
   );
 }
