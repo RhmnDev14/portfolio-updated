@@ -25,61 +25,54 @@ export default function Hero() {
   }, [showPdf]);
 
   return (
-    <section className="relative">
-      {/* Hero utama */}
-      <div
-        className={`hero min-h-screen transition-opacity duration-300 ${
-          showPdf ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
-      >
-        <div className="hero-content flex flex-col lg:flex-row-reverse items-center lg:items-start gap-8 lg:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-          {/* Profile */}
-          <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0 transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110">
-            <img
-              src="/profile.jpeg"
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
-          </div>
+    <div className="relative hero min-h-screen">
+      <div className="hero-content flex flex-col lg:flex-row-reverse items-center lg:items-start justify-center gap-8 lg:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6">
+        {/* Profile */}
+        <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0">
+          <img
+            src="/profile.jpeg"
+            alt="Profile"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-          <div className="flex flex-col gap-4">
-            {/* Terminal */}
-            <Terminal>
-              <TypingAnimation>
-                &gt; npx create-dev rahmanumardi@latest init
-              </TypingAnimation>
-              <AnimatedSpan className="text-green-500">
-                ✔ Setting up environment.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-green-500">
-                ✔ Setting up clean architecture.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-green-500">
-                ✔ Loading skills: Go, Java, JavaScript.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-green-500">
-                ✔ Connected to PostgreSQL · MySQL · Redis.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-green-500">
-                ✔ Enabling REST API · WebSocket · gRPC.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-green-500">
-                ✔ Configuring Docker & Nginx Gateway.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-green-500">
-                ✔ Experienced with Linux (Ubuntu) · CLI · Bash.
-              </AnimatedSpan>
-              <TypingAnimation className="text-muted-foreground">
-                Success! Software Developer profile initialized.
-              </TypingAnimation>
-            </Terminal>
+        {/* Terminal + CV button */}
+        <div className="flex flex-col gap-4">
+          <Terminal>
+            <TypingAnimation>
+              &gt; npx create-dev rahmanumardi@latest init
+            </TypingAnimation>
+            <AnimatedSpan className="text-green-500">
+              ✔ Setting up environment.
+            </AnimatedSpan>
+            <AnimatedSpan className="text-green-500">
+              ✔ Setting up clean architecture.
+            </AnimatedSpan>
+            <AnimatedSpan className="text-green-500">
+              ✔ Loading skills: Go, Java, JavaScript.
+            </AnimatedSpan>
+            <AnimatedSpan className="text-green-500">
+              ✔ Connected to PostgreSQL · MySQL · Redis.
+            </AnimatedSpan>
+            <AnimatedSpan className="text-green-500">
+              ✔ Enabling REST API · WebSocket · gRPC.
+            </AnimatedSpan>
+            <AnimatedSpan className="text-green-500">
+              ✔ Configuring Docker & Nginx Gateway.
+            </AnimatedSpan>
+            <AnimatedSpan className="text-green-500">
+              ✔ Experienced with Linux (Ubuntu) · CLI · Bash.
+            </AnimatedSpan>
+            <TypingAnimation className="text-muted-foreground">
+              Success! Software Developer profile initialized.
+            </TypingAnimation>
+          </Terminal>
 
-            {/* Button CV */}
-            <div>
-              <InteractiveHoverButton onClick={() => setShowPdf(true)}>
-                CV
-              </InteractiveHoverButton>
-            </div>
+          {/* Button CV */}
+          <div>
+            <InteractiveHoverButton onClick={() => setShowPdf(true)}>
+              CV
+            </InteractiveHoverButton>
           </div>
         </div>
       </div>
@@ -109,6 +102,6 @@ export default function Hero() {
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 }
