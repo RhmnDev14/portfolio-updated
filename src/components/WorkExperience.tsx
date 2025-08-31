@@ -25,7 +25,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
         mx-auto
       "
     >
-      <h2 className="mb-6 flex justify-center">
+      <h2 className="mb-6 border-b border-gray-300 pb-2 text-center">
         <HyperText>Work Experience</HyperText>
       </h2>
 
@@ -43,7 +43,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
               key={idx}
               className="
                 flex flex-col items-center text-center
-                p-4 border-[3px] border-gray-200 rounded-lg
+                p-4 border border-gray-200 rounded-lg
                 shadow-sm hover:shadow-md transition bg-white
               "
             >
@@ -57,7 +57,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
               <div className="flex-1">
                 <h3 className="text-xl font-semibold">{exp.position}</h3>
                 <span className="text-gray-500 text-sm">
-                  {exp.startDate} - {exp.endDate || "Sekarang"}
+                  {exp.startDate} - {exp.endDate || "Now"}
                 </span>
                 <p className="text-gray-700 font-medium mt-1">{exp.company}</p>
                 {exp.description && (

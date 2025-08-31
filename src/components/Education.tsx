@@ -24,8 +24,8 @@ const EducationList: React.FC<EducationListProps> = ({ education }) => {
         mx-auto
       "
     >
-      <h2 className="mb-6 flex justify-center">
-        <HyperText>education</HyperText>
+      <h2 className="mb-6 border-b border-gray-300 pb-2 text-center">
+        <HyperText>Education</HyperText>
       </h2>
 
       {/* Area scroll dengan border hanya di desktop */}
@@ -42,7 +42,7 @@ const EducationList: React.FC<EducationListProps> = ({ education }) => {
               key={idx}
               className="
                 flex flex-col items-center text-center
-                p-4 border-[3px] border-gray-200 rounded-lg
+                p-4 border border-gray-200 rounded-lg
                 shadow-sm hover:shadow-md transition bg-white
               "
             >

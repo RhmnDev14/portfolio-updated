@@ -19,6 +19,7 @@ import {
 } from "react-icons/di";
 import Certifications from "@/components/Certificate";
 import ExperienceEducationWrapper from "@/components/ExperienceEducation";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   const pendidikanData = [
@@ -80,7 +81,7 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar />
         <Hero />
-
+        <Projects />
         {/* Container untuk Education & WorkExperience */}
         <ExperienceEducationWrapper
           education={pendidikanData}

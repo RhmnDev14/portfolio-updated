@@ -29,7 +29,7 @@ export default function Carousel() {
                 alt={`carousel ${i + 1}`}
                 width={1920}
                 height={1080}
-                className="w-full h-auto max-h-[80vh] lg:max-h-[65vh] object-contain"
+                className="w-full h-auto max-h-[80vh] lg:max-h-[65vh] object-contain border border-gray-300 rounded-lg"
                 priority={i === 0}
               />
             </div>
