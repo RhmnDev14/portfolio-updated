@@ -12,7 +12,7 @@ export default function Navbar() {
     >
       {/* Hamburger + Logo (mobile) */}
       <div className="flex items-center gap-2 md:hidden">
-        <div className="dropdown">
+        <div className="dropdown relative">
           <label tabIndex={0} className="btn btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ export default function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 right-0 left-auto"
           >
             <li>
               <Link href="#about">About</Link>

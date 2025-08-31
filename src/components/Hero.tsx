@@ -26,13 +26,15 @@ export default function Hero() {
 
   return (
     <section className="relative">
+      {/* Hero utama */}
       <div
         className={`hero min-h-screen transition-opacity duration-300 ${
           showPdf ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        <div className="hero-content flex-col lg:flex-row-reverse lg:items-start lg:gap-12 px-4 md:px-6 lg:px-8">
-          <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110">
+        <div className="hero-content flex flex-col lg:flex-row-reverse items-center lg:items-start gap-8 lg:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+          {/* Profile */}
+          <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0 transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110">
             <img
               src="/profile.jpeg"
               alt="Profile"
@@ -40,7 +42,8 @@ export default function Hero() {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-4">
+            {/* Terminal */}
             <Terminal>
               <TypingAnimation>
                 &gt; npx create-dev rahmanumardi@latest init
@@ -71,13 +74,17 @@ export default function Hero() {
               </TypingAnimation>
             </Terminal>
 
-            <InteractiveHoverButton onClick={() => setShowPdf(true)}>
-              CV
-            </InteractiveHoverButton>
+            {/* Button CV */}
+            <div>
+              <InteractiveHoverButton onClick={() => setShowPdf(true)}>
+                CV
+              </InteractiveHoverButton>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Modal CV */}
       {showPdf && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="relative bg-white rounded-xl shadow-xl w-[90%] h-[80%] md:w-[70%] md:h-[75%] flex flex-col overflow-hidden">
