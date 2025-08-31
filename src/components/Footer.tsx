@@ -1,8 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-6 text-center text-gray-600 mt-auto">
+    <footer className="w-full bg-white backdrop-blur-md border-t border-white/30 py-6 text-center text-sm text-gray-700">
       <p>
-        &copy; {new Date().getFullYear()} Rahman Umardi. All rights reserved.
+        Building software with passion, precision, and purpose. <br />© 2025{" "}
+        <span className="font-semibold">Rahman Umardi</span> · Built with{" "}
+        <span className="font-semibold">Next.js</span>
       </p>
     </footer>
   );

@@ -18,16 +18,52 @@ import {
   DiVisualstudio,
 } from "react-icons/di";
 import Certifications from "@/components/Certificate";
-import Education from "@/components/Education";
+import ExperienceEducationWrapper from "@/components/ExperienceEducation";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   const pendidikanData = [
     {
-      tahun: "2022 - 2026",
-      institusi: "Indraprasta PGRI University",
-      logo: "/image.png",
+      date: "Sep 2022 - Sep2026",
+      company: "Indraprasta PGRI University",
+      logoUrl: "/unindra.png",
       jurusan: "Informatics Engineering",
-      keterangan: "IPK 3.2/4.0",
+      description: "IPK 3.2/4.0",
+    },
+    {
+      date: "Aug 2025 - Oct 2025",
+      company: "Enigma Camp",
+      logoUrl: "/enigma.png",
+      jurusan: "Bootcamp",
+      description: "Backend with Golang",
+    },
+  ];
+
+  const experiences = [
+    {
+      company: "PT Kreanova Pharmaret",
+      logoUrl: "/roxy.png",
+      position: "Backend Developer",
+      startDate: "Dec 2022",
+      description:
+        "Mengembangkan API untuk sistem internal menggunakan Golang.",
+    },
+    {
+      company: "PT Yamaha Musical Product Asia",
+      logoUrl: "/yamaha.png",
+      position: "Production Operator",
+      startDate: "Jul 2023",
+      endDate: "Jul 2024",
+      description: "Mengawasi proses produksi dan memastikan kualitas produk.",
+    },
+    {
+      company: "PT Yamaha Music Manufacture Asia",
+      logoUrl: "/yamaha.png",
+      position: "Production Operator",
+      startDate: "Aug 2020",
+      endDate: "Feb 2023",
+      description:
+        "Mengembangkan API untuk sistem internal menggunakan Golang.",
     },
   ];
   return (
@@ -38,35 +74,19 @@ export default function Home() {
         squareSize={6}
         gridGap={6}
         flickerChance={0.08}
-        // color="#00ff99"
-        color="rgba(0,0,0,0.1)" // grid abu tipis biar light
+        color="rgba(0,0,0,0.1)"
       />
 
       {/* Content di atas background */}
       <div className="relative z-10">
         <Navbar />
         <Hero />
-
-        <Education data={pendidikanData} />
-
-        <div className="flex justify-center">
-          <IconCloud
-            icons={[
-              <DiGo key="go" size={100} color="#00ADD8" />, // Go
-              <DiJava key="java" size={100} color="#007396" />, // Java
-              <DiJsBadge key="js" size={100} color="#F7DF1E" />, // JavaScript
-              <DiPostgresql key="postgres" size={100} color="#4169E1" />, // PostgreSQL
-              <DiRedis key="redis" size={100} color="#DC382D" />, // Redis
-              <DiMysql key="mysql" size={100} color="#4479A1" />, // MySQL
-              <DiHtml5 key="html5" size={100} color="#E34F26" />, // HTML5
-              <DiCss3 key="css3" size={100} color="#1572B6" />, // CSS3
-              <DiDocker key="docker" size={100} color="#2496ED" />, // Docker
-              <DiGit key="git" size={100} color="#F05032" />, // Git
-              <DiLinux key="linux" size={100} color="#FCC624" />, // Linux
-              <DiVisualstudio key="vscode" size={100} color="#007ACC" />, // VS Code
-            ]}
-          />
-        </div>
+        <Projects />
+        {/* Container untuk Education & WorkExperience */}
+        <ExperienceEducationWrapper
+          education={pendidikanData}
+          experiences={experiences}
+        />
 
         <Certifications />
 
