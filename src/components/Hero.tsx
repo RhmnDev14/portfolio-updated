@@ -25,7 +25,7 @@ export default function Hero() {
   }, [showPdf]);
 
   return (
-    <div className="relative hero min-h-screen">
+    <div className="relative hero min-h-screen pt-14 md:pt-16">
       <div className="hero-content flex flex-col lg:flex-row-reverse items-center lg:items-start justify-center gap-8 lg:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6">
         {/* Profile */}
         <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0">
