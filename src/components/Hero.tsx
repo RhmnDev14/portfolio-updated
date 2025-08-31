@@ -37,7 +37,7 @@ export default function Hero() {
         <div className="hero-content flex-col lg:flex-row-reverse lg:items-start lg:gap-12">
           <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110">
             <img
-              src="/WhatsApp Image 2025-02-25 at 22.33.37.jpeg"
+              src="/profile.jpeg"
               alt="Profile"
               className="w-full h-full object-cover"
             />

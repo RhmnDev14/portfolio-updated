@@ -3,19 +3,20 @@
 import React from "react";
 import { HyperText } from "@/components/magicui/hyper-text";
 
-type EducationItem = {
+type Experience = {
   company: string;
   logoUrl?: string;
-  jurusan?: string;
-  date: string;
+  position: string;
+  startDate: string;
+  endDate?: string;
   description?: string;
 };
 
-type EducationListProps = {
-  education: EducationItem[];
+type ExperienceListProps = {
+  experiences: Experience[];
 };
 
-const EducationList: React.FC<EducationListProps> = ({ education }) => {
+const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
   return (
     <section
       className="
@@ -25,7 +26,7 @@ const EducationList: React.FC<EducationListProps> = ({ education }) => {
       "
     >
       <h2 className="mb-6 flex justify-center">
-        <HyperText>education</HyperText>
+        <HyperText>Work Experience</HyperText>
       </h2>
 
       {/* Area scroll dengan border hanya di desktop */}
@@ -37,7 +38,7 @@ const EducationList: React.FC<EducationListProps> = ({ education }) => {
         "
       >
         <ul className="space-y-6">
-          {education.map((edu, idx) => (
+          {experiences.map((exp, idx) => (
             <li
               key={idx}
               className="
@@ -46,23 +47,21 @@ const EducationList: React.FC<EducationListProps> = ({ education }) => {
                 shadow-sm hover:shadow-md transition bg-white
               "
             >
-              {edu.logoUrl && (
+              {exp.logoUrl && (
                 <img
-                  src={edu.logoUrl}
-                  alt={`${edu.company} logo`}
+                  src={exp.logoUrl}
+                  alt={`${exp.company} logo`}
                   className="w-16 h-16 object-contain mb-4 rounded-md"
                 />
               )}
               <div className="flex-1">
-                <h3 className="text-xl font-semibold">{edu.company}</h3>
-                <span className="text-gray-500 text-sm">{edu.date}</span>
-                {edu.jurusan && (
-                  <p className="text-gray-700 font-medium mt-1">
-                    {edu.jurusan}
-                  </p>
-                )}
-                {edu.description && (
-                  <p className="text-gray-600 mt-2">{edu.description}</p>
+                <h3 className="text-xl font-semibold">{exp.position}</h3>
+                <span className="text-gray-500 text-sm">
+                  {exp.startDate} - {exp.endDate || "Sekarang"}
+                </span>
+                <p className="text-gray-700 font-medium mt-1">{exp.company}</p>
+                {exp.description && (
+                  <p className="text-gray-600 mt-2">{exp.description}</p>
                 )}
               </div>
             </li>
@@ -73,4 +72,4 @@ const EducationList: React.FC<EducationListProps> = ({ education }) => {
   );
 };
 
-export default EducationList;
+export default ExperienceList;
