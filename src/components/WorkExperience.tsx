@@ -34,7 +34,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
         className="
           rounded-lg p-4
           md:border md:border-gray-200 
-          md:max-h-[400px] md:overflow-y-auto
+          md:max-h-[300px] md:overflow-y-auto
         "
       >
         <ul className="space-y-6">

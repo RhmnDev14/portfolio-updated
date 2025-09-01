@@ -1,86 +1,80 @@
 "use client";
 
 import Link from "next/link";
-import { Dock, DockIcon } from "@/components/magicui/dock";
 import { FaWhatsapp, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { useState, useEffect, useRef } from "react";
+import { Dock, DockIcon } from "@/components/magicui/dock";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLUListElement | null>(null);
+
+  // Tutup dropdown ketika klik di luar
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <nav
-      className="fixed top-0 left-0 w-full z-50 h-14 flex items-center justify-between 
-      bg-white/80 backdrop-blur-md border-b border-white/30 px-4 md:px-6 lg:px-8"
-    >
-      {/* Hamburger + Logo (mobile) */}
-      <div className="flex items-center gap-2 md:hidden">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+    <nav className="fixed top-0 left-0 w-full z-50 h-16 bg-white shadow-md px-4 md:px-8 flex items-center justify-between">
+      {/* Kiri: Hamburger + Logo */}
+      <div className="flex items-center gap-4">
+        {/* Hamburger */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex flex-col justify-center items-center w-8 h-8 gap-1 focus:outline-none"
           >
-            <li>
-              <Link href="#about">About</Link>
-            </li>
-            <li>
-              <Link href="#skills">Skills</Link>
-            </li>
-            <li>
-              <Link href="#projects">Projects</Link>
-            </li>
-            <li>
-              <Link href="#contact">Contact</Link>
-            </li>
-          </ul>
+            <span className="block w-6 h-0.5 bg-black"></span>
+            <span className="block w-6 h-0.5 bg-black"></span>
+            <span className="block w-6 h-0.5 bg-black"></span>
+          </button>
         </div>
 
-        <Link href="/" className="btn btn-ghost normal-case text-xl font-bold">
+        {/* Logo */}
+        <Link href="/" className="text-xl font-bold">
           MyPortfolio
         </Link>
       </div>
 
-      {/* Logo (desktop) */}
-      <div className="hidden md:flex flex-1">
-        <Link href="/" className="btn btn-ghost normal-case text-xl font-bold">
-          MyPortfolio
-        </Link>
-      </div>
+      {/* Tengah: Menu desktop */}
+      <ul className="hidden md:flex gap-8 font-medium">
+        <li>
+          <a href="#home">Home</a>
+        </li>
+        <li>
+          <a href="#projects">Projects</a>
+        </li>
+        <li>
+          <a href="#workexperience">Work Experience</a>
+        </li>
+        <li>
+          <a href="#education">Education</a>
+        </li>
+        <li>
+          <a href="#certification">Certification</a>
+        </li>
+      </ul>
 
-      {/* Menu desktop di tengah */}
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-        <ul className="menu menu-horizontal px-1 gap-6 font-medium text-black">
-          <li>
-            <Link href="#about">About</Link>
-          </li>
-          <li>
-            <Link href="#skills">Skills</Link>
-          </li>
-          <li>
-            <Link href="#projects">Projects</Link>
-          </li>
-          <li>
-            <Link href="#contact">Contact</Link>
-          </li>
-        </ul>
-      </div>
-
-      {/* Dock */}
-      <div className="relative -top-4">
-        <Dock>
+      {/* Kanan: Dock */}
+      <div className="h-full flex items-center -mt-6">
+        <Dock className="!h-9 flex items-center gap-2">
           <DockIcon>
             <a
               href="https://www.linkedin.com/in/rahman-umardi-9a750b25b/"
@@ -115,6 +109,30 @@ export default function Navbar() {
           </DockIcon>
         </Dock>
       </div>
+
+      {/* Dropdown mobile */}
+      {isOpen && (
+        <ul
+          ref={dropdownRef}
+          className="absolute top-16 left-4 bg-white shadow-md rounded-md flex flex-col gap-2 p-4 w-40 md:hidden"
+        >
+          <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
+            <a href="#projects">Projects</a>
+          </li>
+          <li>
+            <a href="#workexperience">Work Experience</a>
+          </li>
+          <li>
+            <a href="#education">Education</a>
+          </li>
+          <li>
+            <a href="#certification">Certification</a>
+          </li>
+        </ul>
+      )}
     </nav>
   );
 }

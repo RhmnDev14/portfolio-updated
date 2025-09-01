@@ -118,7 +118,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="my-8 bg-white p-6 rounded-lg shadow-md w-[90%] sm:w-[85%] md:w-[95%] lg:max-w-6xl mx-auto">
+    <section className="my-6 bg-white p-4 rounded-lg shadow-md w-[90%] sm:w-[85%] md:w-[95%] lg:max-w-3xl mx-auto">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="mb-6 border-b border-gray-300 pb-2 text-center">
           <HyperText>projects</HyperText>
@@ -200,7 +200,9 @@ export default function ProjectsSection() {
                   />
                 </div>
                 <h3 className="text-xl font-semibold mt-4">{project.title}</h3>
-                <p className="text-gray-600 text-sm mt-1">{description}</p>
+                <p className="text-gray-600 text-sm mt-1 line-clamp-4">
+                  {description}
+                </p>
 
                 {renderLogos("Integration", integration)}
                 {renderLogos("Tech Stack", tech)}
