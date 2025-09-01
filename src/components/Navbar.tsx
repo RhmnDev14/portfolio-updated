@@ -2,11 +2,34 @@
 
 import Link from "next/link";
 import { FaWhatsapp, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLUListElement | null>(null);
+
+  // Tutup dropdown ketika klik di luar
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 h-16 bg-white shadow-md px-4 md:px-8 flex items-center justify-between">
@@ -33,24 +56,24 @@ export default function Navbar() {
       {/* Tengah: Menu desktop */}
       <ul className="hidden md:flex gap-8 font-medium">
         <li>
-          <Link href="#about">About</Link>
+          <a href="#home">Home</a>
         </li>
         <li>
-          <Link href="#skills">Skills</Link>
+          <a href="#projects">Projects</a>
         </li>
         <li>
-          <Link href="#projects">Projects</Link>
+          <a href="#workexperience">Work Experience</a>
         </li>
         <li>
-          <Link href="#contact">Contact</Link>
+          <a href="#education">Education</a>
+        </li>
+        <li>
+          <a href="#certification">Certification</a>
         </li>
       </ul>
 
       {/* Kanan: Dock */}
-      {/* Kanan: Dock */}
       <div className="h-full flex items-center -mt-6">
-        {" "}
-        {/* naik 4px */}
         <Dock className="!h-9 flex items-center gap-2">
           <DockIcon>
             <a
@@ -89,18 +112,24 @@ export default function Navbar() {
 
       {/* Dropdown mobile */}
       {isOpen && (
-        <ul className="absolute top-16 left-4 bg-white shadow-md rounded-md flex flex-col gap-2 p-4 w-40 md:hidden">
+        <ul
+          ref={dropdownRef}
+          className="absolute top-16 left-4 bg-white shadow-md rounded-md flex flex-col gap-2 p-4 w-40 md:hidden"
+        >
           <li>
-            <Link href="#about">About</Link>
+            <a href="#home">Home</a>
           </li>
           <li>
-            <Link href="#skills">Skills</Link>
+            <a href="#projects">Projects</a>
           </li>
           <li>
-            <Link href="#projects">Projects</Link>
+            <a href="#workexperience">Work Experience</a>
           </li>
           <li>
-            <Link href="#contact">Contact</Link>
+            <a href="#education">Education</a>
+          </li>
+          <li>
+            <a href="#certification">Certification</a>
           </li>
         </ul>
       )}

@@ -68,10 +68,7 @@ export default function Hero() {
         </Terminal>
 
         <div className="mt-2">
-          <InteractiveHoverButton
-            onClick={() => setShowPdf(true)}
-            className="w-auto px-4 py-1 text-center"
-          >
+          <InteractiveHoverButton onClick={() => setShowPdf(true)}>
             CV
           </InteractiveHoverButton>
         </div>
