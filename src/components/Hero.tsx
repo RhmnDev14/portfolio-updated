@@ -25,55 +25,55 @@ export default function Hero() {
   }, [showPdf]);
 
   return (
-    <div className="relative hero min-h-screen pt-14 md:pt-16">
-      <div className="hero-content flex flex-col lg:flex-row-reverse items-center lg:items-start justify-center gap-8 lg:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6">
-        {/* Profile */}
-        <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0">
-          <img
-            src="/profile.jpeg"
-            alt="Profile"
-            className="w-full h-full object-cover"
-          />
-        </div>
+    <section className="relative flex flex-col lg:flex-row-reverse items-center justify-center gap-8 lg:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6 pt-24 md:pt-28 min-h-screen">
+      {/* Profile */}
+      <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0">
+        <img
+          src="/profile.jpeg"
+          alt="Profile"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-        {/* Terminal + CV button */}
-        <div className="flex flex-col gap-4">
-          <Terminal>
-            <TypingAnimation>
-              &gt; npx create-dev rahmanumardi@latest init
-            </TypingAnimation>
-            <AnimatedSpan className="text-green-500">
-              ✔ Setting up environment.
-            </AnimatedSpan>
-            <AnimatedSpan className="text-green-500">
-              ✔ Setting up clean architecture.
-            </AnimatedSpan>
-            <AnimatedSpan className="text-green-500">
-              ✔ Loading skills: Go, Java, JavaScript.
-            </AnimatedSpan>
-            <AnimatedSpan className="text-green-500">
-              ✔ Connected to PostgreSQL · MySQL · Redis.
-            </AnimatedSpan>
-            <AnimatedSpan className="text-green-500">
-              ✔ Enabling REST API · WebSocket · gRPC.
-            </AnimatedSpan>
-            <AnimatedSpan className="text-green-500">
-              ✔ Configuring Docker & Nginx Gateway.
-            </AnimatedSpan>
-            <AnimatedSpan className="text-green-500">
-              ✔ Experienced with Linux (Ubuntu) · CLI · Bash.
-            </AnimatedSpan>
-            <TypingAnimation className="text-muted-foreground">
-              Success! Software Developer profile initialized.
-            </TypingAnimation>
-          </Terminal>
+      {/* Terminal + CV button */}
+      <div className="flex flex-col gap-4">
+        <Terminal>
+          <TypingAnimation>
+            &gt; npx create-dev rahmanumardi@latest init
+          </TypingAnimation>
+          <AnimatedSpan className="text-green-500">
+            ✔ Setting up environment.
+          </AnimatedSpan>
+          <AnimatedSpan className="text-green-500">
+            ✔ Setting up clean architecture.
+          </AnimatedSpan>
+          <AnimatedSpan className="text-green-500">
+            ✔ Loading skills: Go, Java, JavaScript.
+          </AnimatedSpan>
+          <AnimatedSpan className="text-green-500">
+            ✔ Connected to PostgreSQL · MySQL · Redis.
+          </AnimatedSpan>
+          <AnimatedSpan className="text-green-500">
+            ✔ Enabling REST API · WebSocket · gRPC.
+          </AnimatedSpan>
+          <AnimatedSpan className="text-green-500">
+            ✔ Configuring Docker & Nginx Gateway.
+          </AnimatedSpan>
+          <AnimatedSpan className="text-green-500">
+            ✔ Experienced with Linux (Ubuntu) · CLI · Bash.
+          </AnimatedSpan>
+          <TypingAnimation className="text-muted-foreground">
+            Success! Software Developer profile initialized.
+          </TypingAnimation>
+        </Terminal>
 
-          {/* Button CV */}
-          <div>
-            <InteractiveHoverButton onClick={() => setShowPdf(true)}>
-              CV
-            </InteractiveHoverButton>
-          </div>
+        <div className="mt-2">
+          <InteractiveHoverButton
+            onClick={() => setShowPdf(true)}
+            className="w-auto px-4 py-1 text-center"
+          >
+            CV
+          </InteractiveHoverButton>
         </div>
       </div>
 
@@ -102,6 +102,6 @@ export default function Hero() {
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }
