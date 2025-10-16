@@ -111,8 +111,8 @@ export default function ProjectsSection() {
           <HyperText>Projects</HyperText>
         </h2>
 
-        {/* Mobile: stacked cards */}
-        <div className="grid gap-6 md:hidden">
+        {/* MOBILE VIEW: vertical scroll */}
+        <div className="md:hidden flex flex-col gap-8 max-h-[85vh] overflow-y-auto pb-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 snap-y snap-mandatory">
           {projects.map((project, idx) => {
             const description = getProjectValue(project.description, "-");
             const tech = getProjectValue(project.tech, []);
@@ -121,8 +121,11 @@ export default function ProjectsSection() {
             const demo = getProjectValue(project.demo, "-");
 
             return (
-              <div key={idx} className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-                <div className="relative w-full h-48 rounded-lg overflow-hidden">
+              <div
+                key={idx}
+                className="flex-shrink-0 snap-center bg-white rounded-xl border border-gray-200 shadow-md p-5 hover:shadow-lg transition"
+              >
+                <div className="relative w-full h-52 rounded-lg overflow-hidden">
                   <Image src={project.image} alt={project.title} fill className="object-cover" />
                 </div>
                 <h3 className="text-lg font-semibold mt-4">{project.title}</h3>
@@ -131,12 +134,22 @@ export default function ProjectsSection() {
                 {renderLogos("Tech Stack", tech)}
                 <div className="mt-4 flex gap-4">
                   {repo !== "-" && (
-                    <a href={repo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-gray-700 hover:text-black">
+                    <a
+                      href={repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm text-gray-700 hover:text-black"
+                    >
                       <FaGithub /> Code
                     </a>
                   )}
                   {demo !== "-" && (
-                    <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-blue-600 hover:underline">
+                    <a
+                      href={demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
+                    >
                       <FaExternalLinkAlt /> Live Demo
                     </a>
                   )}
@@ -146,7 +159,7 @@ export default function ProjectsSection() {
           })}
         </div>
 
-        {/* Desktop: horizontal scroll */}
+        {/* DESKTOP VIEW: horizontal scroll */}
         <div className="hidden md:flex overflow-x-auto gap-10 pb-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 snap-x snap-mandatory">
           {projects.map((project, idx) => {
             const description = getProjectValue(project.description, "-");
@@ -169,12 +182,22 @@ export default function ProjectsSection() {
                 {renderLogos("Tech Stack", tech)}
                 <div className="mt-5 flex gap-6">
                   {repo !== "-" && (
-                    <a href={repo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base text-gray-700 hover:text-black">
+                    <a
+                      href={repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-base text-gray-700 hover:text-black"
+                    >
                       <FaGithub /> Code
                     </a>
                   )}
                   {demo !== "-" && (
-                    <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base text-blue-600 hover:underline">
+                    <a
+                      href={demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-base text-blue-600 hover:underline"
+                    >
                       <FaExternalLinkAlt /> Live Demo
                     </a>
                   )}
