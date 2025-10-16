@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { HyperText } from "./magicui/hyper-text";
 
 const images = [
   "/CertificateEnigma.jpeg",
@@ -10,23 +10,30 @@ const images = [
 ];
 
 export default function Carousel() {
-  const [active, setActive] = useState(0);
-
   return (
-    <div className="flex justify-center items-center w-full py-10">
-      <div className="w-[90%] md:w-[70%] lg:w-[50%] mx-auto border-[16px] border-white rounded-2xl shadow-2xl overflow-hidden bg-white">
-        {/* Carousel */}
-        <div className="carousel w-full relative flex-1">
+    <section className="flex justify-center items-center w-full py-16 px-4">
+      <div className="w-[90%] md:w-[80%] lg:w-[70%] mx-auto border-[16px] border-white rounded-2xl shadow-2xl overflow-hidden bg-white">
+        {/* Header inside container */}
+        <div className="text-center py-6 border-b border-gray-200 bg-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+            {/* Certification */}
+            <HyperText>certification </HyperText>
+          </h2>
+        </div>
+
+        {/* Scrollable area */}
+        <div
+          className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+          style={{ scrollBehavior: "smooth" }}
+        >
           {images.map((src, i) => (
             <div
               key={i}
-              className={`carousel-item w-full flex justify-center items-center transition-opacity duration-700 ${
-                active === i ? "opacity-100" : "opacity-0 absolute"
-              }`}
+              className="flex-shrink-0 w-full snap-center flex justify-center items-center p-4"
             >
               <Image
                 src={src}
-                alt={`carousel ${i + 1}`}
+                alt={`certificate ${i + 1}`}
                 width={1920}
                 height={1080}
                 className="w-full h-auto max-h-[80vh] lg:max-h-[65vh] object-contain border border-gray-300 rounded-lg"
@@ -36,40 +43,11 @@ export default function Carousel() {
           ))}
         </div>
 
-        {/* Navigation + Buttons */}
-        <div className="flex items-center justify-center gap-4 py-3 border-t border-gray-200 bg-white">
-          {/* Prev Button */}
-          <button
-            onClick={() =>
-              setActive((active - 1 + images.length) % images.length)
-            }
-            className="bg-white shadow-md border rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100"
-          >
-            ‹
-          </button>
-
-          {/* Dots */}
-          <div className="flex justify-center gap-2">
-            {images.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={`w-3 h-3 rounded-full ${
-                  active === i ? "bg-blue-600" : "bg-gray-400"
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Next Button */}
-          <button
-            onClick={() => setActive((active + 1) % images.length)}
-            className="bg-white shadow-md border rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100"
-          >
-            ›
-          </button>
+        {/* Scroll hint */}
+        <div className="text-center py-2 text-sm text-gray-500 bg-white border-t">
+          ← Swipe or scroll to view more certificates →
         </div>
       </div>
-    </div>
+    </section>
   );
 }
