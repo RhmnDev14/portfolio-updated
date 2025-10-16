@@ -72,28 +72,23 @@ export default function Home() {
 
   return (
     // testtt
-    <main className="relative flex flex-col min-h-screen bg-white overflow-x-hidden scroll-smooth">
+    // <main className="relative flex flex-col min-h-screen bg-white overflow-x-hidden scroll-smooth">
+    <main className="relative flex flex-col min-h-screen **bg-white** overflow-x-hidden scroll-smooth">
       {/* Background grid */}
-      {/* <FlickeringGrid
-        className="absolute inset-0 z-0"
-        squareSize={6}
-        gridGap={6}
-        flickerChance={0.08}
-        color="rgba(0,0,0,0.1)"
-      /> */}
-      <LightRays/>
+
+      {/* <LightRays/> */}
 
       {/* Content di atas background */}
       <div className="relative z-10">
         <Navbar />
 
         {/* Hero Section */}
-        <section
-          id="home"
-          className="h-screen flex items-center justify-center scroll-mt-16"
-        >
-          <Hero />
-        </section>
+      <section
+        id="home"
+        className="h-screen flex items-center justify-center scroll-mt-16 px-0 md:px-8"
+      >
+        <Hero />
+      </section>
 
         {/* Projects Section */}
         <section
