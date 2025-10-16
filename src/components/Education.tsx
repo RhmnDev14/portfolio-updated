@@ -28,12 +28,13 @@ const EducationList: React.FC<EducationListProps> = ({ education }) => {
         <HyperText>Education</HyperText>
       </h2>
 
-      {/* Area scroll dengan border hanya di desktop */}
+      {/* Scroll area with dynamic height */}
       <div
         className="
           rounded-lg p-4
           md:border md:border-gray-200 
-          md:max-h-[300px] md:overflow-y-auto
+          max-h-[500px] md:max-h-[600px] 
+          overflow-y-auto
         "
       >
         <ul className="space-y-6">

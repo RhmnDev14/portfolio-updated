@@ -22,18 +22,34 @@ export default function Home() {
       company: "Enigma Camp",
       logoUrl: "/enigma.png",
       jurusan: "Bootcamp",
-      description: "Backend with Golang",
+      description: "Backend with golang",
+    },
+    {
+      date: "Jun 2017 - Jun 2020",
+      company: "SMK Arridho Depok",
+      logoUrl: "/arridho.png",
+      jurusan: "Accounting",
+      description: "Recording financial transactions, preparing financial reports, cash management, taxation, and simple audits.",
     },
   ];
 
   const experiences = [
     {
+      company: "PT PLN Icon Plus",
+      logoUrl: "/iconplus.png",
+      position: "Backend Developer",
+      startDate: "Sep 2025",
+      description:
+        "Developing Listriqu system using Golang.",
+    },
+    {
       company: "PT Kreanova Pharmaret",
       logoUrl: "/roxy.png",
       position: "Backend Developer",
-      startDate: "Dec 2022",
+      startDate: "Dec 2024",
+      endDate: "Sep 2025",
       description:
-        "Mengembangkan API untuk sistem internal menggunakan Golang.",
+        "Developing roxy ecommerce oms system using Golang.",
     },
     {
       company: "PT Yamaha Musical Product Asia",
@@ -41,7 +57,7 @@ export default function Home() {
       position: "Production Operator",
       startDate: "Jul 2023",
       endDate: "Jul 2024",
-      description: "Mengawasi proses produksi dan memastikan kualitas produk.",
+      description: "Carry out production processes and ensure product quality.",
     },
     {
       company: "PT Yamaha Music Manufacture Asia",
@@ -50,7 +66,7 @@ export default function Home() {
       startDate: "Aug 2020",
       endDate: "Feb 2023",
       description:
-        "Mengembangkan API untuk sistem internal menggunakan Golang.",
+        "Carry out production processes and ensure product quality.",
     },
   ];
 
