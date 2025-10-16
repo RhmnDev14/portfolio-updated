@@ -6,7 +6,7 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { HyperText } from "@/components/magicui/hyper-text";
 import { FaRegFilePdf } from "react-icons/fa6";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
 import {
   AnimatedSpan,
   Terminal,
@@ -67,11 +67,23 @@ export default function Hero() {
           </TypingAnimation>
         </Terminal>
 
-        <div className="mt-2 flex justify-center md:justify-start">
+        <div className="mt-2 flex flex-col items-center md:items-start gap-3">
           <InteractiveHoverButton onClick={() => setShowPdf(true)}>
             CV
           </InteractiveHoverButton>
+
+          {/* Scroll Down indicator for mobile */}
+          <div className="flex flex-col items-center text-gray-600 md:hidden animate-bounce mt-2">
+            <IoIosArrowDown className="text-2xl" />
+            <span className="text-xs">Scroll Down</span>
+          </div>
         </div>
+      </div>
+
+      {/* Scroll down indicator for desktop */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center text-gray-600 animate-bounce">
+        <IoIosArrowDown className="text-3xl" />
+        <span className="text-sm">Scroll Down</span>
       </div>
 
       {/* Modal CV */}
