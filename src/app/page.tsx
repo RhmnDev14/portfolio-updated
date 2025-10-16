@@ -6,6 +6,7 @@ import Certifications from "@/components/Certificate";
 import Projects from "@/components/Projects";
 import EducationList from "@/components/Education";
 import WorkExperience from "@/components/WorkExperience";
+import { LightRays } from "@/components/light-rays";
 
 export default function Home() {
   const pendidikanData = [
@@ -56,13 +57,14 @@ export default function Home() {
   return (
     <main className="relative flex flex-col min-h-screen bg-white overflow-x-hidden scroll-smooth">
       {/* Background grid */}
-      <FlickeringGrid
+      {/* <FlickeringGrid
         className="absolute inset-0 z-0"
         squareSize={6}
         gridGap={6}
         flickerChance={0.08}
         color="rgba(0,0,0,0.1)"
-      />
+      /> */}
+      <LightRays/>
 
       {/* Content di atas background */}
       <div className="relative z-10">
