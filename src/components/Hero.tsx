@@ -25,9 +25,9 @@ export default function Hero() {
   }, [showPdf]);
 
   return (
-    <section className="relative flex flex-col lg:flex-row-reverse items-center justify-center gap-8 lg:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6 pt-24 md:pt-28 min-h-screen">
+    <section className="relative flex flex-col md:flex-row-reverse items-center justify-center gap-8 md:gap-12 w-full max-w-6xl mx-auto px-4 md:px-6 pt-20 md:pt-28 min-h-screen">
       {/* Profile */}
-      <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0">
+      <div className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden shadow-lg shadow-black/40 border-4 border-white/80 flex-shrink-0 mb-6 md:mb-0">
         <img
           src="/profile.jpeg"
           alt="Profile"
@@ -36,7 +36,7 @@ export default function Hero() {
       </div>
 
       {/* Terminal + CV button */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full max-w-lg">
         <Terminal>
           <TypingAnimation>
             &gt; npx create-dev rahmanumardi@latest init
@@ -45,19 +45,19 @@ export default function Hero() {
             ✔ Setting up environment.
           </AnimatedSpan>
           <AnimatedSpan className="text-green-500">
-            ✔ Setting up clean architecture.
+            ✔ Setting up Clean Architecture · Microservice Architecture.
           </AnimatedSpan>
           <AnimatedSpan className="text-green-500">
-            ✔ Loading skills: Go, Java, JavaScript.
+            ✔ Loading skills: Go · Java · JavaScript.
           </AnimatedSpan>
           <AnimatedSpan className="text-green-500">
-            ✔ Connected to PostgreSQL · MySQL · Redis.
+            ✔ Connected to PostgreSQL · MySQL · Redis · MongoDB.
           </AnimatedSpan>
           <AnimatedSpan className="text-green-500">
             ✔ Enabling REST API · WebSocket · gRPC.
           </AnimatedSpan>
           <AnimatedSpan className="text-green-500">
-            ✔ Configuring Docker & Nginx Gateway.
+            ✔ Configuring Docker.
           </AnimatedSpan>
           <AnimatedSpan className="text-green-500">
             ✔ Experienced with Linux (Ubuntu) · CLI · Bash.
@@ -67,7 +67,7 @@ export default function Hero() {
           </TypingAnimation>
         </Terminal>
 
-        <div className="mt-2">
+        <div className="mt-2 flex justify-center md:justify-start">
           <InteractiveHoverButton onClick={() => setShowPdf(true)}>
             CV
           </InteractiveHoverButton>
