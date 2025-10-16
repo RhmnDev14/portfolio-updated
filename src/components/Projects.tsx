@@ -105,8 +105,8 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="my-6 bg-white p-6 rounded-lg shadow-md w-[90%] sm:w-[85%] md:w-[95%] lg:max-w-6xl mx-auto">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="my-6 bg-white p-6 rounded-lg shadow-md w-[90%] sm:w-[85%] md:w-[95%] lg:max-w-[90rem] mx-auto">
+      <div className="max-w-[90rem] mx-auto px-4">
         <h2 className="mb-6 border-b border-gray-300 pb-2 text-center">
           <HyperText>Projects</HyperText>
         </h2>
@@ -147,7 +147,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Desktop: horizontal scroll */}
-        <div className="hidden md:flex overflow-x-auto gap-6 pb-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 snap-x snap-mandatory">
+        <div className="hidden md:flex overflow-x-auto gap-10 pb-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 snap-x snap-mandatory">
           {projects.map((project, idx) => {
             const description = getProjectValue(project.description, "-");
             const tech = getProjectValue(project.tech, []);
@@ -158,23 +158,23 @@ export default function ProjectsSection() {
             return (
               <div
                 key={idx}
-                className="min-w-[400px] max-w-[450px] flex-shrink-0 snap-center bg-white rounded-xl border border-gray-200 shadow-md p-6 hover:shadow-lg transition"
+                className="min-w-[750px] max-w-[800px] flex-shrink-0 snap-center bg-white rounded-xl border border-gray-200 shadow-md p-8 hover:shadow-lg transition"
               >
-                <div className="relative w-full h-64 rounded-lg overflow-hidden">
+                <div className="relative w-full h-80 rounded-lg overflow-hidden">
                   <Image src={project.image} alt={project.title} fill className="object-cover" />
                 </div>
-                <h3 className="text-xl font-semibold mt-4">{project.title}</h3>
-                <p className="text-gray-600 text-sm mt-1 line-clamp-5">{description}</p>
+                <h3 className="text-2xl font-semibold mt-6">{project.title}</h3>
+                <p className="text-gray-600 text-base mt-2 line-clamp-5">{description}</p>
                 {renderLogos("Integration", integration)}
                 {renderLogos("Tech Stack", tech)}
-                <div className="mt-4 flex gap-4">
+                <div className="mt-5 flex gap-6">
                   {repo !== "-" && (
-                    <a href={repo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-gray-700 hover:text-black">
+                    <a href={repo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base text-gray-700 hover:text-black">
                       <FaGithub /> Code
                     </a>
                   )}
                   {demo !== "-" && (
-                    <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-blue-600 hover:underline">
+                    <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-base text-blue-600 hover:underline">
                       <FaExternalLinkAlt /> Live Demo
                     </a>
                   )}
