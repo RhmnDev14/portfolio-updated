@@ -32,7 +32,7 @@ export default function Hero() {
         
         {/* Kolom 1: Header ucapan selamat datang (Kiri di desktop) */}
         <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-none">
-          <TypingAnimation className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-blue-400 dark:text-blue-400 drop-shadow-lg leading-snug">
+          <TypingAnimation className="text-2xl hidden md:block lg:text-5xl font-extrabold text-blue-400 dark:text-blue-400 drop-shadow-lg leading-snug">
             Welcome to My Portfolio 👋
           </TypingAnimation>
           {/* Kalimat 2: Hanya muncul di desktop (hidden md:block) */}
@@ -138,4 +138,5 @@ export default function Hero() {
       )}
     </section>
   );
+
 }
