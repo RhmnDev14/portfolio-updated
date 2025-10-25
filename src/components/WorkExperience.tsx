@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HyperText } from "@/components/magicui/hyper-text";
 
 type Experience = {
@@ -17,35 +17,51 @@ type ExperienceListProps = {
 };
 
 const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
-  return (
-    <section
-      className="
-        my-8 bg-white p-6 rounded-lg shadow-md
-        w-[90%] sm:w-[85%] md:max-w-3xl
-        mx-auto
-      "
-    >
-      <h2 className="mb-6 border-b border-gray-300 pb-2 text-center">
-        <HyperText>Work Experience</HyperText>
-      </h2>
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = useState(false);
 
-      {/* Scroll area — dynamic height */}
-      <div
-        className="
-          rounded-lg p-4
-          md:border md:border-gray-200 
-          max-h-[500px] md:max-h-[600px] 
-          overflow-y-auto
-        "
-      >
-        <ul className="space-y-6">
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const checkScroll = () => {
+      setCanScroll(el.scrollWidth > el.clientWidth);
+    };
+
+    checkScroll();
+    window.addEventListener("resize", checkScroll);
+    return () => window.removeEventListener("resize", checkScroll);
+  }, []);
+
+  return (
+    <section className="flex justify-center items-center w-full py-16 px-4">
+      <div className="w-[90%] md:w-[80%] lg:w-[70%] **max-w-screen-xl** mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        {/* Header */}
+        <div className="text-center py-6 border-b border-gray-200 bg-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide">
+            <HyperText>Work Experience</HyperText>
+          </h2>
+        </div>
+
+        {/* Scrollable or centered cards */}
+        <div
+          ref={scrollRef}
+          className={`
+            flex gap-6 py-8 px-6
+            ${canScroll ? "overflow-x-auto justify-start" : "justify-center"}
+            snap-x snap-mandatory scroll-smooth
+            scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100
+          `}
+          style={{ scrollBehavior: "smooth" }}
+        >
           {experiences.map((exp, idx) => (
-            <li
+            <div
               key={idx}
               className="
-                flex flex-col items-center text-center
-                p-4 border border-gray-200 rounded-lg
-                shadow-sm hover:shadow-md transition bg-white
+                flex-shrink-0 w-[260px] sm:w-[280px] md:w-[320px] h-[360px]
+                snap-center flex flex-col justify-center items-center text-center
+                bg-white border border-gray-100 rounded-2xl
+                shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300
               "
             >
               {exp.logoUrl && (
@@ -55,19 +71,30 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
                   className="w-16 h-16 object-contain mb-4 rounded-md"
                 />
               )}
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold">{exp.position}</h3>
-                <span className="text-gray-500 text-sm">
-                  {exp.startDate} - {exp.endDate || "Now"}
-                </span>
-                <p className="text-gray-700 font-medium mt-1">{exp.company}</p>
-                {exp.description && (
-                  <p className="text-gray-600 mt-2">{exp.description}</p>
-                )}
-              </div>
-            </li>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">
+                {exp.position}
+              </h3>
+              <p className="text-gray-500 text-sm mb-2">
+                {exp.startDate} - {exp.endDate || "Now"}
+              </p>
+              <p className="text-gray-700 font-medium text-base mb-3">
+                {exp.company}
+              </p>
+              {exp.description && (
+                <p className="text-gray-600 text-sm leading-relaxed line-clamp-4 px-2">
+                  {exp.description}
+                </p>
+              )}
+            </div>
           ))}
-        </ul>
+        </div>
+
+        {/* Scroll hint */}
+        {canScroll && (
+          <div className="text-center py-3 text-sm text-gray-500 bg-white border-t animate-pulse">
+            ← Swipe to view more experiences →
+          </div>
+        )}
       </div>
     </section>
   );

@@ -93,31 +93,31 @@ export default function Home() {
         {/* Projects Section */}
         <section
           id="projects"
-          className="min-h-screen py-20 flex items-center justify-center scroll-mt-16"
+          className="flex-1 py-12 md:h-screen scroll-mt-16"
         >
           <Projects />
         </section>
 
-        {/* Work Experience & Education */}
-        <div className="flex flex-col md:flex-row md:gap-8 gap-6 w-[90%] sm:w-[85%] md:w-full max-w-6xl mx-auto my-8 md:my-20">
+        {/* Work Experience */}
           <section
             id="workexperience"
             className="flex-1 py-12 md:h-screen scroll-mt-16"
           >
             <WorkExperience experiences={experiences} />
           </section>
+
+          {/* Education */}
           <section
             id="education"
             className="flex-1 py-12 md:h-screen scroll-mt-16"
           >
             <EducationList education={pendidikanData} />
           </section>
-        </div>
 
         {/* Certification */}
         <section
           id="certification"
-          className="py-12 md:h-screen flex items-center justify-center scroll-mt-16"
+          className="flex-1 py-12 md:h-screen scroll-mt-16"
         >
           <Certifications />
         </section>

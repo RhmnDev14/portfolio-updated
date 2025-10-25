@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Image from "next/image";
 import { HyperText } from "@/components/magicui/hyper-text";
@@ -71,141 +71,125 @@ const projects: Project[] = [
 ];
 
 export default function ProjectsSection() {
-  const [isMobile, setIsMobile] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const checkScroll = () => setCanScroll(el.scrollWidth > el.clientWidth);
+    checkScroll();
+
+    window.addEventListener("resize", checkScroll);
+    return () => window.removeEventListener("resize", checkScroll);
   }, []);
 
-  const getProjectValue = <T,>(value: T | undefined, defaultValue: T) =>
-    value !== undefined ? value : defaultValue;
-
-  const renderLogos = (label: string, items: TechOrIntegration[]) => {
-    if (!items.length) return null;
-    const size = isMobile ? 40 : 50;
+  const renderLogos = (label: string, items?: TechOrIntegration[]) => {
+    if (!items || !items.length) return null;
     return (
-      <p className="mt-2 text-sm flex items-center gap-4 flex-wrap">
+      <div className="mt-3 text-sm flex flex-wrap items-center justify-center gap-3">
         <span className="font-semibold">{label}:</span>
         {items.map((item, idx) => (
-          <span key={idx} title={item.name}>
-            <Image
-              src={item.src}
-              alt={item.name}
-              width={size}
-              height={size}
-              className="inline-block object-contain"
-            />
-          </span>
+          <Image
+            key={idx}
+            src={item.src}
+            alt={item.name}
+            width={40}
+            height={40}
+            title={item.name}
+            className="object-contain"
+          />
         ))}
-      </p>
+      </div>
     );
   };
 
   return (
-    <section className="my-6 bg-white p-6 rounded-lg shadow-md w-[90%] sm:w-[85%] md:w-[95%] lg:max-w-[90rem] mx-auto">
-      <div className="max-w-[90rem] mx-auto px-4">
-        <h2 className="mb-6 border-b border-gray-300 pb-2 text-center">
-          <HyperText>Projects</HyperText>
-        </h2>
+    <section className="flex justify-center items-center w-full py-16 px-4">
+      <div className="w-[90%] md:w-[80%] lg:w-[70%] **max-w-screen-xl** mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        {/* Header */}
+        <div className="text-center py-6 border-b border-gray-200 bg-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide">
+            <HyperText>Projects</HyperText>
+          </h2>
+        </div>
 
-        {/* MOBILE VIEW: vertical scroll */}
-        <div className="md:hidden flex flex-col gap-8 max-h-[85vh] overflow-y-auto pb-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 snap-y snap-mandatory">
-          {projects.map((project, idx) => {
-            const description = getProjectValue(project.description, "-");
-            const tech = getProjectValue(project.tech, []);
-            const integration = getProjectValue(project.integration, []);
-            const repo = getProjectValue(project.repo, "-");
-            const demo = getProjectValue(project.demo, "-");
+        {/* Scrollable Cards */}
+        <div
+          ref={scrollRef}
+          className={`
+            flex gap-8 p-8
+            ${canScroll ? "overflow-x-auto justify-start" : "justify-center"}
+            snap-x snap-mandatory scroll-smooth
+            scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100
+          `}
+          style={{ scrollBehavior: "smooth" }}
+        >
+          {projects.map((project, idx) => (
+            <div
+              key={idx}
+              className="
+                flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] h-[460px]
+                bg-white rounded-2xl border border-gray-100 shadow-md
+                flex flex-col items-center text-center
+                hover:shadow-xl hover:-translate-y-1 transition-all duration-300
+                snap-center
+              "
+            >
+              <div className="relative w-full h-44 rounded-t-2xl overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
-            return (
-              <div
-                key={idx}
-                className="flex-shrink-0 snap-center bg-white rounded-xl border border-gray-200 shadow-md p-5 hover:shadow-lg transition"
-              >
-                <div className="relative w-full h-52 rounded-lg overflow-hidden">
-                  <Image src={project.image} alt={project.title} fill className="object-cover" />
-                </div>
-                <h3 className="text-lg font-semibold mt-4">{project.title}</h3>
-                <p className="text-gray-600 text-sm mt-1">{description}</p>
-                {renderLogos("Integration", integration)}
-                {renderLogos("Tech Stack", tech)}
-                <div className="mt-4 flex gap-4">
-                  {repo !== "-" && (
+              <div className="flex-1 flex flex-col justify-center px-4 py-3">
+                <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 text-sm line-clamp-4">
+                  {project.description}
+                </p>
+
+                {renderLogos("Integration", project.integration)}
+                {renderLogos("Tech", project.tech)}
+
+                <div className="mt-4 flex justify-center gap-5">
+                  {project.repo && (
                     <a
-                      href={repo}
+                      href={project.repo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-sm text-gray-700 hover:text-black"
+                      className="flex items-center gap-1 text-gray-700 hover:text-black text-sm"
                     >
                       <FaGithub /> Code
                     </a>
                   )}
-                  {demo !== "-" && (
+                  {project.demo && (
                     <a
-                      href={demo}
+                      href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
+                      className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                     >
-                      <FaExternalLinkAlt /> Live Demo
+                      <FaExternalLinkAlt /> Live
                     </a>
                   )}
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
-        {/* DESKTOP VIEW: horizontal scroll */}
-        <div className="hidden md:flex overflow-x-auto gap-10 pb-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 snap-x snap-mandatory">
-          {projects.map((project, idx) => {
-            const description = getProjectValue(project.description, "-");
-            const tech = getProjectValue(project.tech, []);
-            const integration = getProjectValue(project.integration, []);
-            const repo = getProjectValue(project.repo, "-");
-            const demo = getProjectValue(project.demo, "-");
-
-            return (
-              <div
-                key={idx}
-                className="min-w-[750px] max-w-[800px] flex-shrink-0 snap-center bg-white rounded-xl border border-gray-200 shadow-md p-8 hover:shadow-lg transition"
-              >
-                <div className="relative w-full h-80 rounded-lg overflow-hidden">
-                  <Image src={project.image} alt={project.title} fill className="object-cover" />
-                </div>
-                <h3 className="text-2xl font-semibold mt-6">{project.title}</h3>
-                <p className="text-gray-600 text-base mt-2 line-clamp-5">{description}</p>
-                {renderLogos("Integration", integration)}
-                {renderLogos("Tech Stack", tech)}
-                <div className="mt-5 flex gap-6">
-                  {repo !== "-" && (
-                    <a
-                      href={repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-base text-gray-700 hover:text-black"
-                    >
-                      <FaGithub /> Code
-                    </a>
-                  )}
-                  {demo !== "-" && (
-                    <a
-                      href={demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-base text-blue-600 hover:underline"
-                    >
-                      <FaExternalLinkAlt /> Live Demo
-                    </a>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {/* Scroll hint */}
+        {canScroll && (
+          <div className="text-center py-3 text-sm text-gray-500 bg-white border-t animate-pulse">
+            ← Swipe to view more projects →
+          </div>
+        )}
       </div>
     </section>
   );
