@@ -6,12 +6,34 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { HyperText } from "@/components/magicui/hyper-text";
 import { FaRegFilePdf } from "react-icons/fa6";
-import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
-import {
-  AnimatedSpan,
-  Terminal,
-  TypingAnimation,
-} from "@/components/magicui/terminal";
+import { IoIosArrowBack } from "react-icons/io";
+
+// Impor untuk Dock Social Media
+import { Dock, DockIcon } from "@/components/magicui/dock";
+import { FaWhatsapp, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { cn } from "@/lib/utils"; 
+import React from "react"; 
+
+// Mengimpor TypingAnimation dari magicui
+import { TypingAnimation } from "@/components/magicui/terminal"; 
+
+// Deklarasi Interface untuk Props
+interface ComponentProps {
+  children: React.ReactNode;
+  className?: string; 
+}
+
+// Komponen Dummy pengganti Terminal 
+const AnimatedSpan = ({ children, className }: ComponentProps) => <span className={cn(className)}>{children}</span>;
+
+
+// Data untuk ikon sosial/kontak
+const socialItems = [
+    { href: "https://www.linkedin.com/in/rahman-umardi-9a750b25b/", label: "LinkedIn", icon: FaLinkedin }, 
+    { href: "https://github.com/RhmnDev14", label: "GitHub", icon: FaGithub },       
+    { href: "https://wa.me/6281284502736", label: "WhatsApp", icon: FaWhatsapp },     
+    { href: "mailto:rahmanumardi@gmail.com", label: "Email", icon: FaEnvelope },     
+];
 
 const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ssr: false,
@@ -25,28 +47,33 @@ export default function Hero() {
   }, [showPdf]);
 
   return (
-    // PERBAIKAN: Meningkatkan padding-top di mobile dari pt-24 menjadi pt-32 (memberi ruang ekstra)
-    <section className="relative w-full px-4 md:px-8 pt-32 md:pt-28 flex flex-col items-center justify-center">
-      {/* Kontainer utama - items-center di mobile, md:items-center di desktop (rata tengah vertikal) */}
-      <div className="flex flex-col md:flex-row items-center md:items-center justify-center gap-10 md:gap-14 w-full max-w-7xl mx-auto">
+    <section className="relative w-full px-4 md:px-8 pt-24 pb-8 md:pt-28 flex flex-col items-center justify-center">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-14 w-full max-w-7xl mx-auto">
         
-        {/* Kolom 1: Header ucapan selamat datang (Kiri di desktop) */}
-        <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-none">
-          <TypingAnimation className="text-2xl hidden md:block lg:text-5xl font-extrabold text-blue-400 dark:text-blue-400 drop-shadow-lg leading-snug">
-            Welcome to My Portfolio 👋
+        {/* Kolom 1: Header ucapan selamat datang (DIHILANGKAN di mobile, ditampilkan di desktop) */}
+        <div className="hidden md:block w-full md:w-1/2 text-center md:text-left order-1 md:order-none">
+          
+          {/* 🆕 Baris Pertama: Ditambahkan whitespace-nowrap */}
+          <TypingAnimation 
+            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-500 dark:text-blue-400 md:drop-shadow-lg leading-snug mb-1 whitespace-nowrap"
+          >
+            Hello! I&apos;m Rahman Umardi 👋.
           </TypingAnimation>
-          {/* Kalimat 2: Hanya muncul di desktop (hidden md:block) */}
-          <TypingAnimation className="hidden md:block text-sm md:text-xl font-semibold text-gray-700 dark:text-gray-300 mt-2">
+          
+          {/* Baris Kedua: Lebar Maksimal Ditingkatkan menjadi max-w-lg (tetap) */}
+          <TypingAnimation 
+            className="block text-base font-semibold text-gray-700 dark:text-gray-300 mt-3 max-w-lg" 
+          >
             a showcase of dedication, innovation, and continuous growth in software development.
           </TypingAnimation>
         </div>
 
-        {/* Kolom 2: Konten Kanan (Foto di atas Terminal, Rata Tengah di desktop) */}
-        <div className="flex flex-col gap-10 md:gap-8 w-full md:w-1/2 order-2 md:order-none items-center md:items-center">
+        {/* Kolom 2: Konten Kanan (Foto di atas Dock Social Media) */}
+        <div className="flex flex-col gap-8 md:gap-8 w-full md:w-1/2 order-2 md:order-none items-center"> 
 
-          {/* FOTO (Di atas Terminal di desktop) */}
-          <div className="flex justify-center md:justify-center w-full">
-            <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-xl overflow-hidden transition-transform duration-300">
+          {/* FOTO */}
+          <div className="flex justify-center w-full">
+            <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-xl overflow-hidden transition-transform duration-300">
               <img
                 src="/Gemini_Generated_Image_1ajo331ajo331ajo (1).png"
                 alt="Profile"
@@ -55,61 +82,49 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Terminal + tombol (Di bawah Foto di desktop) */}
-          <div className="flex flex-col gap-4 w-full md:max-w-md text-left items-center">
-            <Terminal className="text-left bg-white shadow-2xl w-full">
-              <TypingAnimation className="text-sm md:text-base text-gray-500">
-                  &gt; npx create-dev rahmanumardi@latest init
-              </TypingAnimation>
-              <AnimatedSpan className="text-cyan-400">
-                ✔ Setting up environment.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-cyan-400">
-                ✔ Setting up Clean Architecture · Microservice Architecture.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-cyan-400">
-                ✔ Loading skills: Go · Java · JavaScript.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-cyan-400">
-                ✔ Connected to PostgreSQL · MySQL · Redis · MongoDB.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-cyan-400">
-                ✔ Enabling REST API · WebSocket · gRPC.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-cyan-400">
-                ✔ Configuring Docker.
-              </AnimatedSpan>
-              <AnimatedSpan className="text-cyan-400">
-                ✔ Experienced with Linux (Ubuntu) · CLI · Bash.
-              </AnimatedSpan>
-              <TypingAnimation className="text-sm md:text-base text-gray-500">
-                Success! Software Developer profile initialized.
-              </TypingAnimation>
-            </Terminal>
+          {/* DOCK SOCIAL MEDIA */}
+          <div className="flex flex-col gap-2 w-full md:max-w-md text-left items-center">
+            
+            <HyperText 
+                className="text-xl font-bold tracking-tight text-gray-800 dark:text-white"
+            >
+                Connect with Me
+            </HyperText>
+            
+            <div className="w-1/3 h-0.5 bg-blue-500 rounded-full mb-1" />
 
-            {/* Tombol CV (Rata tengah di mobile & desktop) */}
-            <div className="mt-2 flex flex-col items-center md:items-center gap-3 w-full">
+            {/* Dock komponen utama */}
+            <Dock className="p-2 bg-white/70 backdrop-blur-sm border border-gray-100/50 shadow-xl">
+                {socialItems.map((item, index) => (
+                    <a
+                        key={index}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative group flex flex-col items-center justify-center p-1 transition-all duration-300 hover:scale-110 hover:-translate-y-0.5" 
+                    >
+                        <DockIcon className="bg-transparent text-gray-700 hover:text-blue-600 transition-colors">
+                            <item.icon size={20} /> 
+                        </DockIcon>
+                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 
+                                         mb-2 px-2 py-1 bg-gray-700 text-white text-[10px] font-medium 
+                                         rounded-md shadow-lg whitespace-nowrap opacity-0 
+                                         group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            {item.label}
+                        </span>
+                    </a>
+                ))}
+            </Dock>
+
+            {/* Tombol CV */}
+            <div className="flex flex-col items-center gap-3 w-full"> 
               <InteractiveHoverButton onClick={() => setShowPdf(true)}>
                 CV
               </InteractiveHoverButton>
-
-              {/* Scroll Down indicator for mobile */}
-              {/* <div className="flex flex-col items-center text-blue-600 md:hidden animate-bounce mt-2">
-                <IoIosArrowDown className="text-2xl" />
-                <span className="text-xs">Scroll Down</span>
-              </div> */}
             </div>
           </div>
         </div>
       </div>
-
-      {/* Scroll Down untuk desktop (Rata tengah bawah) */}
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:flex flex-row items-center text-blue-600 animate-bounce z-10">
-        <IoIosArrowDown className="text-3xl mr-2" />
-        <span className="text-sm">
-          Scroll down to explore more about my work and journey.
-        </span>
-      </div> */}
 
       {/* Modal CV */}
       {showPdf && (
@@ -138,5 +153,4 @@ export default function Hero() {
       )}
     </section>
   );
-
 }
