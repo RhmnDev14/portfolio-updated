@@ -1,12 +1,19 @@
 "use client";
 
+import { useState } from 'react'; 
 import Link from "next/link";
-// Import Icon untuk Menu Navigasi (pastikan Anda menginstal react-icons)
-import { FaHome, FaLaptopCode, FaGraduationCap, FaCertificate, FaToolbox, FaWhatsapp, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
-import { Dock, DockIcon } from "@/components/magicui/dock";
-import { cn } from "@/lib/utils"; // Pastikan Anda memiliki fungsi cn untuk menggabungkan kelas
+// Import Icon Navigasi dan Hamburger/Tutup
+import { 
+    FaHome, 
+    FaLaptopCode, 
+    FaGraduationCap, 
+    FaCertificate, 
+    FaToolbox, 
+    FaBars, 
+    FaTimes 
+} from "react-icons/fa";
+import { cn } from "@/lib/utils"; 
 
-// Data untuk ikon navigasi (di Dock)
 const navItems = [
   { href: "#home", label: "Home", icon: FaHome },
   { href: "#projects", label: "Projects", icon: FaLaptopCode },
@@ -15,19 +22,12 @@ const navItems = [
   { href: "#certification", label: "Certificates", icon: FaCertificate },
 ];
 
-// Data untuk ikon sosial/kontak (di Navbar Atas dan Dock Mobile)
-const socialItems = [
-    { href: "https://www.linkedin.com/in/rahman-umardi-9a750b25b/", label: "LinkedIn", icon: FaLinkedin }, 
-    { href: "https://github.com/RhmnDev14", label: "GitHub", icon: FaGithub },       
-    { href: "https://wa.me/6281284502736", label: "WhatsApp", icon: FaWhatsapp },     
-    { href: "mailto:rahmanumardi@gmail.com", label: "Email", icon: FaEnvelope },     
-];
-
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
-      {/* 1. Navbar Atas (Logo dan Kontak Desktop) */}
       <nav 
         className={cn(
             "fixed top-4 left-0 right-0 z-[100] mx-auto w-[95%] md:w-[90%] lg:w-[80%]",
@@ -35,90 +35,62 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between h-12 px-4 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl border border-gray-100/50">
             
-            {/* Logo Kiri */}
-            <Link href="/" className="text-xl font-bold text-gray-800 hover:text-blue-600 transition duration-300">
+            <Link 
+                href="/" 
+                onClick={closeMenu} 
+                className="text-xl font-bold text-gray-800 hover:text-blue-600 transition duration-300 min-w-max"
+            >
                 RahmanDev
             </Link>
 
-            {/* Ikon Kontak Kanan (Hanya di Desktop) - DIBUAT INTERAKTIF */}
-            <div className="hidden md:flex gap-4 text-gray-600">
-                {socialItems.map((item, index) => (
-                    // Tambahkan GROUP dan RELATIVE untuk Tooltip
-                    <a
+            {/* Navigasi Utama (Desktop/Tablet) - DENGAN EFEK TIMBUL */}
+            <div className="hidden md:flex flex-1 justify-center gap-4"> 
+                {navItems.map((item, index) => (
+                    <Link 
                         key={index}
                         href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative group hover:text-blue-600 transition-colors"
+                        // 🆕 Tambahkan efek transformasi dan transisi
+                        className="flex items-center gap-1.5 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 text-sm px-2 py-1 rounded-lg hover:bg-gray-100 
+                                   hover:scale-105 hover:-translate-y-0.5 transform" 
                     >
-                        <item.icon size={20} />
-                        {/* Label Pop-up Desktop */}
-                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 
-                                        mb-2 px-2 py-1 bg-gray-700 text-white text-[10px] 
-                                        rounded-md shadow-lg whitespace-nowrap opacity-0 
-                                        group-hover:opacity-100 transition-opacity duration-300 z-20">
-                            {item.label}
-                        </span>
-                    </a>
+                        {/* Ikon juga akan ikut timbul karena berada dalam elemen Link */}
+                        <item.icon size={16} className="text-gray-500 group-hover:text-blue-600 transition-colors" /> 
+                        {item.label}
+                    </Link>
                 ))}
             </div>
-
-            {/* Tombol Kontak Mobile (Jika Dock tidak cukup menampung) */}
-            <div className="md:hidden">
-              <a href="#certification" className="text-sm font-medium text-blue-600 hover:text-blue-700">
-                Contact
-              </a>
-            </div>
+            
+            <button 
+                className="md:hidden text-gray-800 hover:text-blue-600 p-1 transition-colors"
+                onClick={() => setIsMenuOpen(!isMenuOpen)} 
+                aria-label="Toggle navigation menu"
+            >
+                {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
 
         </div>
       </nav>
 
-      {/* 2. Floating Dock (Navigasi dan Sosmed Mobile) */}
-      <div className="fixed bottom-4 left-0 right-0 z-50 flex justify-center pointer-events-none">
-        <Dock className="p-2 pointer-events-auto bg-black/70 backdrop-blur-sm border border-gray-700/50">
-            
-            {/* Nav Items - Dengan Efek Timbul dan Tooltip */}
-            {navItems.map((item) => (
-                <Link 
-                    key={item.href} 
-                    href={item.href} 
-                    // Efek Timbul dan Group untuk Tooltip
-                    className="flex flex-col items-center justify-center p-1 group relative transition-all duration-300 hover:scale-110 hover:-translate-y-1" 
-                >
-                    <DockIcon className="bg-transparent text-white/80 hover:text-blue-400 transition-colors">
-                        <item.icon size={20} />
-                    </DockIcon>
-                    {/* Label Navigasi */}
-                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 
-                                     mb-2 px-2 py-1 bg-gray-700 text-white text-[10px] font-medium 
-                                     rounded-md shadow-lg whitespace-nowrap opacity-0 
-                                     group-hover:opacity-100 transition-opacity duration-300 z-20">
-                        {item.label}
-                    </span>
-                </Link>
-            ))}
-
-            {/* Pemisah dan Social Items di Mobile - Dengan Efek Timbul dan Tooltip */}
-            <div className="md:hidden border-l border-gray-600 ml-1 pl-2 flex gap-1">
-                {socialItems.map((item, index) => ( 
-                    // Efek Timbul dan Group untuk Tooltip
-                    <div key={index} className="relative group flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1">
-                        <DockIcon className="bg-transparent text-white/80 hover:text-blue-400 transition-colors">
-                            <a href={item.href} target="_blank" rel="noopener noreferrer">
-                                <item.icon size={20} />
-                            </a>
-                        </DockIcon>
-                        {/* Label Sosial Mobile */}
-                         <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 
-                                         mb-2 px-2 py-1 bg-gray-700 text-white text-[10px] 
-                                         rounded-md shadow-lg whitespace-nowrap opacity-0 
-                                         group-hover:opacity-100 transition-opacity duration-300 z-20">
-                            {item.label}
-                        </span>
-                    </div>
-                ))}
-            </div>
-        </Dock>
+      {/* Dropdown Menu Mobile (tidak perlu efek timbul di sini, sudah ada efek hover bg) */}
+      <div 
+          className={cn(
+              "fixed top-[4.5rem] left-0 right-0 z-50 transition-all duration-300 overflow-hidden",
+              isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 pointer-events-none" 
+          )}
+      >
+          <div className="mx-auto w-[95%] bg-white shadow-xl rounded-xl border border-gray-100 py-3 space-y-2">
+              {navItems.map((item, index) => (
+                  <Link 
+                      key={index}
+                      href={item.href}
+                      onClick={closeMenu} 
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors font-medium border-l-4 border-transparent hover:border-blue-600"
+                  >
+                      <item.icon size={18} />
+                      {item.label}
+                  </Link>
+              ))}
+          </div>
       </div>
     </>
   );
