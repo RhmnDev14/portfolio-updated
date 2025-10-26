@@ -77,6 +77,10 @@ module.exports = {
     "flex-1",
     "overflow-auto",
     "p-2",
+    
+    // 🆕 Safelist untuk SkillCarousel
+    "hover:animation-pause",
+    "animate-scroll-infinite",
   ],
   theme: {
     extend: {
@@ -127,9 +131,32 @@ module.exports = {
           5: "hsl(var(--chart-5))",
         },
       },
+      // 🆕 KONFIGURASI ANIMASI SCROLL
+      animation: {
+        // Durasi scroll akan ditentukan oleh variabel CSS (--scroll-duration) di komponen React
+        'scroll-infinite': 'scroll var(--scroll-duration, 25s) linear infinite',
+      },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          // Pindah 50% untuk menciptakan loop yang mulus (karena item digandakan)
+          '100%': { transform: 'translateX(-50%)' }, 
+        },
+      },
     },
   },
-  plugins: [require("daisyui"), require("tailwindcss-animate")],
+  plugins: [
+    require("daisyui"), 
+    require("tailwindcss-animate"),
+    // 🆕 PLUGIN KUSTOM UNTUK MENGHENTIKAN ANIMASI SAAT HOVER
+    function ({ addUtilities }) {
+      addUtilities({
+        '.hover\\:animation-pause:hover': {
+          'animation-play-state': 'paused',
+        },
+      });
+    },
+  ],
   daisyui: {
     themes: ["light"], // default light
     darkTheme: "light", // tetap pakai light meskipun browser dark mode

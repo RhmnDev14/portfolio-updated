@@ -12,7 +12,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="light">
-      <body className="bg-white text-gray-900">{children}</body>
+      <body className="bg-white text-gray-900">
+        {children}
+        <div id="tooltip-root" />
+        </body>
     </html>
   );
 }

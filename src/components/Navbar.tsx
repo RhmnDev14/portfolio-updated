@@ -2,7 +2,7 @@
 
 import { useState } from 'react'; 
 import Link from "next/link";
-// Import Icon Navigasi dan Hamburger/Tutup
+import { usePathname } from 'next/navigation'; 
 import { 
     FaHome, 
     FaLaptopCode, 
@@ -10,12 +10,15 @@ import {
     FaCertificate, 
     FaToolbox, 
     FaBars, 
-    FaTimes 
+    FaTimes,
+    FaLightbulb // 🆕 ikon untuk Skills
 } from "react-icons/fa";
 import { cn } from "@/lib/utils"; 
 
+// 🆕 Tambahkan Skills di daftar navigasi
 const navItems = [
   { href: "#home", label: "Home", icon: FaHome },
+  { href: "#skills", label: "Skills", icon: FaLightbulb },
   { href: "#projects", label: "Projects", icon: FaLaptopCode },
   { href: "#workexperience", label: "Work Experience", icon: FaToolbox },
   { href: "#education", label: "Education", icon: FaGraduationCap },
@@ -25,12 +28,18 @@ const navItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
+  
+  const pathname = usePathname();
+
+  if (pathname.includes('/cv/preview')) {
+    return null; 
+  }
 
   return (
     <>
       <nav 
         className={cn(
-            "fixed top-4 left-0 right-0 z-[100] mx-auto w-[95%] md:w-[90%] lg:w-[80%]",
+            "fixed top-4 left-0 right-0 z-[100] mx-auto w-[95%] md:w-[90%] lg:w-[80%]"
         )}
       >
         <div className="flex items-center justify-between h-12 px-4 bg-white/70 backdrop-blur-sm shadow-lg rounded-xl border border-gray-100/50">
@@ -43,17 +52,15 @@ export default function Navbar() {
                 RahmanDev
             </Link>
 
-            {/* Navigasi Utama (Desktop/Tablet) - DENGAN EFEK TIMBUL */}
+            {/* Navigasi Utama (Desktop/Tablet) */}
             <div className="hidden md:flex flex-1 justify-center gap-4"> 
                 {navItems.map((item, index) => (
                     <Link 
                         key={index}
                         href={item.href}
-                        // 🆕 Tambahkan efek transformasi dan transisi
                         className="flex items-center gap-1.5 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 text-sm px-2 py-1 rounded-lg hover:bg-gray-100 
                                    hover:scale-105 hover:-translate-y-0.5 transform" 
                     >
-                        {/* Ikon juga akan ikut timbul karena berada dalam elemen Link */}
                         <item.icon size={16} className="text-gray-500 group-hover:text-blue-600 transition-colors" /> 
                         {item.label}
                     </Link>
@@ -71,7 +78,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Dropdown Menu Mobile (tidak perlu efek timbul di sini, sudah ada efek hover bg) */}
+      {/* Dropdown Menu Mobile */}
       <div 
           className={cn(
               "fixed top-[4.5rem] left-0 right-0 z-50 transition-all duration-300 overflow-hidden",

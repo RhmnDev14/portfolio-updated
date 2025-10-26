@@ -57,7 +57,7 @@ export default function Hero() {
           <TypingAnimation 
             className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-500 dark:text-blue-400 md:drop-shadow-lg leading-snug mb-1 whitespace-nowrap"
           >
-            Hello! I&apos;m Rahman Umardi 👋.
+            Hello! I&apos;m Rahman Umardi 👋
           </TypingAnimation>
           
           {/* Baris Kedua: Lebar Maksimal Ditingkatkan menjadi max-w-lg (tetap) */}
@@ -127,30 +127,42 @@ export default function Hero() {
       </div>
 
       {/* Modal CV */}
-      {showPdf && (
+    {showPdf && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-          <div className="relative bg-white rounded-xl shadow-xl w-[90%] h-[80%] md:w-[70%] md:h-[75%] flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between p-3 border-b">
-              <ShinyButton onClick={() => setShowPdf(false)}>
-                <IoIosArrowBack />
-              </ShinyButton>
-              <HyperText>CV</HyperText>
-              <a
-                href="/RahmanUmardi.pdf"
-                download="Rahman-Umardi-CV.pdf"
-                className="ml-2"
-              >
-                <ShinyButton>
-                  <FaRegFilePdf />
-                </ShinyButton>
-              </a>
+            <div className="relative bg-white rounded-xl shadow-xl w-[90%] h-[80%] md:w-[70%] md:h-[75%] flex flex-col overflow-hidden">
+                <div className="flex items-center justify-between p-3 border-b">
+                    
+                    {/* TOMBOL 1: BACK (Warna Biru) */}
+                    <ShinyButton 
+                        onClick={() => setShowPdf(false)}
+                        // 🆕 Tambahkan warna dan style untuk tombol Back
+                        className="bg-red-400 text-white hover:bg-red-600 transition duration-200 p-2 rounded-lg"
+                    >
+                        <IoIosArrowBack size={20} />
+                    </ShinyButton>
+                    
+                    <HyperText>CV</HyperText>
+                    
+                    <a
+                        href="/RahmanUmardi.pdf"
+                        download="Rahman-Umardi-CV.pdf"
+                        className="ml-2"
+                    >
+                        {/* TOMBOL 2: PDF (Warna Merah/Aksen PDF) */}
+                        <ShinyButton
+                            // 🆕 Tambahkan warna dan style untuk tombol PDF
+                            className="bg-blue-400 text-white hover:bg-blue-600 transition duration-200 p-2 rounded-lg"
+                        >
+                            <FaRegFilePdf size={20} />
+                        </ShinyButton>
+                    </a>
+                </div>
+                <div className="flex-1 overflow-auto p-2">
+                    <PdfViewer file="/RahmanUmardi.pdf" />
+                </div>
             </div>
-            <div className="flex-1 overflow-auto p-2">
-              <PdfViewer file="/RahmanUmardi.pdf" />
-            </div>
-          </div>
         </div>
-      )}
+    )}
     </section>
   );
 }

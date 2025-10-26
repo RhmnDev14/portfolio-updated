@@ -70,3 +70,53 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* === Skill Carousel True Seamless Scroll === */
+.skill-scroll-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.skill-scroll-content {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: scroll-true-seamless var(--scroll-duration, 30s) linear infinite;
+  will-change: transform;
+}
+
+@keyframes scroll-true-seamless {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.hover\:animation-pause:hover .skill-scroll-content {
+  animation-play-state: paused;
+}
+
+
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-infinite {
+  animation: scrollInfinite var(--scroll-duration) linear infinite;
+  animation-play-state: running;
+}
+
+.animate-scroll-paused {
+  animation: scrollInfinite var(--scroll-duration) linear infinite;
+  animation-play-state: paused;
+}
+
+

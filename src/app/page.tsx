@@ -1,17 +1,55 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+// import { FlickeringGrid } from "@/components/magicui/flickering-grid"; // Tidak dipakai
 import Certifications from "@/components/Certificate";
 import Projects from "@/components/Projects";
 import EducationList from "@/components/Education";
 import WorkExperience from "@/components/WorkExperience";
-import { LightRays } from "@/components/light-rays";
+// import { LightRays } from "@/components/light-rays"; // Tidak dipakai
+
+// 🆕 Import komponen IconCloud
+import { IconCloud } from "@/components/magicui/icon-cloud"; 
+import { HyperText } from "@/components/magicui/hyper-text";
+import { SkillCarousel } from "@/components/Skills";
+
+// 🆕 Daftar Gambar/Ikon Keterampilan Inti (Skills)
+// Catatan: Pastikan file-file ini ada di folder /public proyek Anda
+const skillImages: string[] = [
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",      // Golang
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",  // PostgreSQL
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",       // Redis
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",      // Next.js
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",      // Docker
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", //java
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netbeans/netbeans-original.svg", //netbeans
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" // MongoDb
+  // Tambahkan logo lain sesuai skills Anda
+];
+
+// 🆕 Definisikan Tipe untuk Data Pengalaman dan Pendidikan (Untuk Menghilangkan Implicit Any)
+interface EducationItem {
+    date: string;
+    company: string;
+    logoUrl: string;
+    jurusan: string;
+    description: string;
+}
+
+interface ExperienceItem {
+    company: string;
+    logoUrl: string;
+    position: string;
+    startDate: string;
+    endDate?: string; // endDate bisa opsional
+    description: string;
+}
+
 
 export default function Home() {
-  const pendidikanData = [
+  const pendidikanData: EducationItem[] = [
     {
-      date: "Sep 2022 - Sep2026",
+      date: "Sep 2022 - Sep 2026",
       company: "Indraprasta PGRI University",
       logoUrl: "/unindra.png",
       jurusan: "Informatics Engineering",
@@ -22,7 +60,7 @@ export default function Home() {
       company: "Enigma Camp",
       logoUrl: "/enigma.png",
       jurusan: "Bootcamp",
-      description: "Backend with golang",
+      description: "Backend with Golang",
     },
     {
       date: "Jun 2017 - Jun 2020",
@@ -33,7 +71,7 @@ export default function Home() {
     },
   ];
 
-  const experiences = [
+  const experiences: ExperienceItem[] = [
     {
       company: "PT PLN Icon Plus",
       logoUrl: "/iconplus.png",
@@ -71,18 +109,11 @@ export default function Home() {
   ];
 
   return (
-    // testtt
-    // <main className="relative flex flex-col min-h-screen bg-white overflow-x-hidden scroll-smooth">
-    <main className="relative flex flex-col min-h-screen **bg-white** overflow-x-hidden scroll-smooth">
-      {/* Background grid */}
-
-      {/* <LightRays/> */}
-
-      {/* Content di atas background */}
+    <main className="relative flex flex-col min-h-screen bg-white overflow-x-hidden scroll-smooth">
       <div className="relative z-10">
         <Navbar />
 
-        {/* Hero Section */}
+        {/* 1. Hero Section (Home) */}
       <section
         id="home"
         className="h-screen flex items-center justify-center scroll-mt-16 px-0 md:px-8"
@@ -90,7 +121,28 @@ export default function Home() {
         <Hero />
       </section>
 
-        {/* Projects Section */}
+        {/* 2. 🆕 SKILLS SECTION (Icon Cloud) */}
+      <section
+          id="skills" 
+          className="flex-1 py-12 md:h-screen flex items-center justify-center scroll-mt-16 bg-white"
+      >
+          <div className="text-center p-4 w-full max-w-4xl">
+              {/* Header dengan garis abu di bawahnya */}
+              <div className="inline-block">
+                  <HyperText>Skills</HyperText>
+                  <div className="mt-2 w-500 h-[1px] bg-gray-300 mx-auto" />
+              </div>
+
+              <div className="flex justify-center items-center h-[50vh] md:h-[70vh]">
+                  {/* Menggunakan array images untuk memuat logo */}
+                  <SkillCarousel 
+                      images={skillImages} 
+                  />
+              </div>
+          </div>
+      </section>
+
+        {/* 3. Projects Section */}
         <section
           id="projects"
           className="flex-1 py-12 md:h-screen scroll-mt-16"
@@ -98,7 +150,7 @@ export default function Home() {
           <Projects />
         </section>
 
-        {/* Work Experience */}
+        {/* 4. Work Experience */}
           <section
             id="workexperience"
             className="flex-1 py-12 md:h-screen scroll-mt-16"
@@ -106,7 +158,7 @@ export default function Home() {
             <WorkExperience experiences={experiences} />
           </section>
 
-          {/* Education */}
+          {/* 5. Education */}
           <section
             id="education"
             className="flex-1 py-12 md:h-screen scroll-mt-16"
@@ -114,7 +166,7 @@ export default function Home() {
             <EducationList education={pendidikanData} />
           </section>
 
-        {/* Certification */}
+        {/* 6. Certification */}
         <section
           id="certification"
           className="flex-1 py-12 md:h-screen scroll-mt-16"
