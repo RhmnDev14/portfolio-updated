@@ -31,7 +31,8 @@ export default function Carousel() {
 
   return (
   <section className="flex justify-center items-center w-full py-16 px-4">
-    <div className="w-[90%] md:w-[80%] lg:w-[70%] **max-w-screen-xl** mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    {/* Lebar container tetap max-w-6xl */}
+    <div className="w-[90%] md:w-[80%] lg:w-[70%] max-w-6xl mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
     {/* Header */}
     <div className="text-center py-6 border-b border-gray-200 bg-white">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
@@ -49,7 +50,8 @@ export default function Carousel() {
           {images.map((src, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-full snap-center flex justify-center items-center p-6 transition-transform duration-500 ease-in-out"
+              className="flex-shrink-0 w-full snap-center flex justify-center items-center transition-transform duration-500 ease-in-out"
+              // 🆕 MENGHAPUS padding (p-6) dari sini
             >
               <div className="relative w-full flex justify-center items-center">
                 <Image
@@ -57,7 +59,8 @@ export default function Carousel() {
                   alt={`certificate ${i + 1}`}
                   width={1920}
                   height={1080}
-                  className="w-full h-auto max-h-[75vh] lg:max-h-[65vh] object-contain border border-gray-300 rounded-xl shadow-md"
+                  // 🆕 Meningkatkan max-h menjadi 50vh untuk mengimbangi penghapusan padding
+                  className="w-full h-auto max-h-[75vh] lg:max-h-[50vh] object-contain border border-gray-300 rounded-xl shadow-md"
                   priority={i === 0}
                 />
               </div>
