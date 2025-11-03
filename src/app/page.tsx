@@ -11,7 +11,7 @@ import WorkExperience from "@/components/WorkExperience";
 // 🆕 Import komponen IconCloud
 import { IconCloud } from "@/components/magicui/icon-cloud"; 
 import { HyperText } from "@/components/magicui/hyper-text";
-import { SkillCarousel } from "@/components/Skills";
+import { SkillGrid } from "@/components/Skills";
 
 // 🆕 Daftar Gambar/Ikon Keterampilan Inti (Skills)
 // Catatan: Pastikan file-file ini ada di folder /public proyek Anda
@@ -22,8 +22,16 @@ const skillImages: string[] = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",      // Next.js
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",      // Docker
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", //java
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netbeans/netbeans-original.svg", //netbeans
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" // MongoDb
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", //netbeans
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", // MongoDb
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fiber/fiber-original.svg", // Fiber
+  "/gin.png", // Gin Gonic
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", //git
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg", //linux
+  "/grpc.png", //grpc
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg", //linux
+  "/kafka.png", //linux
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg", //linux
   // Tambahkan logo lain sesuai skills Anda
 ];
 
@@ -135,7 +143,7 @@ export default function Home() {
 
               <div className="flex justify-center items-center h-[50vh] md:h-[70vh]">
                   {/* Menggunakan array images untuk memuat logo */}
-                  <SkillCarousel 
+                  <SkillGrid 
                       images={skillImages} 
                   />
               </div>

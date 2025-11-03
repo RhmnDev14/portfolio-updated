@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { createPortal } from "react-dom";
+import React from "react";
 
-interface SkillCarouselProps {
+interface SkillGridProps {
   images: string[];
 }
 
@@ -14,8 +13,16 @@ const skillNames: Record<string, string> = {
   "nextjs-original.svg": "Next.js",
   "docker-original.svg": "Docker",
   "java-original.svg": "Java",
-  "netbeans-original.svg": "NetBeans IDE",
+  "typescript-original.svg": "TS",
   "mongodb-original.svg": "MongoDB",
+  "fiber-original.svg": "Fiber",
+  "git-original.svg": "Git",
+  "gin.png": "Gin",
+  "linux-original.svg": "Linux",
+  "grpc.png": "Grpc",
+  "postman-original.svg":"Postman",
+  "kafka.png":"Kafka",
+  "grafana-original.svg":"Grafana"
 };
 
 const getSkillName = (url: string): string => {
@@ -24,7 +31,13 @@ const getSkillName = (url: string): string => {
     if (filename.includes(".svg")) {
       return (
         skillNames[filename] ||
-        filename.replace(/[-_]/g, " ").replace(".svg", "")
+        filename.replace(/[-_]/g, " ").replace(".svg", "").trim()
+      );
+    }
+    if (filename.includes(".png")) {
+      return (
+        skillNames[filename] ||
+        filename.replace(".png", "").trim()
       );
     }
   } catch {
@@ -33,111 +46,49 @@ const getSkillName = (url: string): string => {
   return "Skill";
 };
 
-export const SkillCarousel: React.FC<SkillCarouselProps> = ({ images }) => {
-  const doubledImages = [...images, ...images];
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(
-    null
-  );
-  const [isPaused, setIsPaused] = useState(false);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  const scrollDuration = images.length * 3;
-
-  useEffect(() => {
-    itemRefs.current = itemRefs.current.slice(0, doubledImages.length);
-  }, [doubledImages.length]);
-
-  const handleMouseEnter =
-    (skillName: string, index: number) =>
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      setHoveredSkill(skillName);
-      setIsPaused(true);
-      const target = itemRefs.current[index];
-      if (target) {
-        const rect = target.getBoundingClientRect();
-        // ✅ gunakan scrollY agar posisi tooltip tidak salah
-        setTooltipPos({
-          x: rect.left + rect.width / 2,
-          y: rect.top + window.scrollY - 12,
-        });
-      }
-    };
-
-  const handleMouseLeave = () => {
-    setHoveredSkill(null);
-    setTooltipPos(null);
-    setIsPaused(false);
-  };
-
-  const portalRoot =
-    typeof document !== "undefined"
-      ? document.getElementById("tooltip-root")
-      : null;
-
+export const SkillGrid: React.FC<SkillGridProps> = ({ images }) => {
   return (
-    <div className="relative w-full overflow-x-hidden py-16">
+    <div className="w-full max-w-4xl mx-auto py-10 px-4">
       <div
-        className={`flex ${
-          isPaused ? "animate-scroll-paused" : "animate-scroll-infinite"
-        }`}
-        style={
-          {
-            "--scroll-duration": `${scrollDuration}s`,
-            gap: "1.5rem",
-          } as React.CSSProperties
-        }
+        className="
+          grid grid-cols-4 gap-6 
+          justify-items-center items-center
+          sm:gap-8 md:gap-10
+        "
       >
-        {doubledImages.map((src, index) => {
+        {images.map((src, index) => {
           const skillName = getSkillName(src);
           return (
             <div
               key={index}
-              ref={(el) => {
-                itemRefs.current[index] = el;
-              }}
-              className="relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center 
-                         bg-white dark:bg-gray-900 p-3 rounded-xl shadow-lg transition-all duration-300 
-                         hover:scale-110 cursor-pointer ring-2 ring-gray-100"
-              onMouseEnter={handleMouseEnter(skillName, index)}
-              onMouseLeave={handleMouseLeave}
+              className="
+                group flex flex-col items-center justify-center
+                w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28
+                rounded-xl shadow-md bg-white dark:bg-gray-800
+                ring-1 ring-gray-200 dark:ring-gray-700
+                transition-transform duration-300 hover:scale-105
+              "
+              aria-label={skillName}
             >
-              <img
-                src={src}
-                alt={skillName}
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.style.display = "none";
-                }}
-                className="w-full h-full object-contain"
-                loading="lazy"
-              />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 mb-2">
+                <img
+                  src={src}
+                  alt={skillName}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+
+              <p className="text-[10px] sm:text-xs md:text-sm font-semibold text-center text-gray-700 dark:text-gray-300">
+                {skillName}
+              </p>
             </div>
           );
         })}
       </div>
-
-      {/* Fade di sisi kiri-kanan */}
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white/90 to-transparent dark:from-gray-900/90 pointer-events-none z-20"></div>
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white/90 to-transparent dark:from-gray-900/90 pointer-events-none z-20"></div>
-
-      {/* Tooltip */}
-      {hoveredSkill && tooltipPos && portalRoot &&
-        createPortal(
-          <div
-            className="absolute bg-gray-800 text-white text-xs px-3 py-1 rounded-lg shadow-xl z-[999] 
-                       transition-opacity duration-200 pointer-events-none whitespace-nowrap"
-            style={{
-              left: tooltipPos.x,
-              top: tooltipPos.y,
-              transform: "translate(-50%, -100%)",
-            }}
-          >
-            {hoveredSkill}
-          </div>,
-          portalRoot
-        )}
     </div>
   );
 };
