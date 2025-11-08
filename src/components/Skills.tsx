@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { HyperText } from "@/components/magicui/hyper-text";
 
 interface SkillGridProps {
   images: string[];
@@ -49,6 +50,19 @@ const getSkillName = (url: string): string => {
 export const SkillGrid: React.FC<SkillGridProps> = ({ images }) => {
   return (
     <div className="w-full max-w-4xl mx-auto py-10 px-4">
+      
+      {/* 🚀 HEADER SKILLS BARU */}
+      <div className="text-center mb-10">
+        <div className="inline-block">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide">
+            <HyperText>Skills</HyperText>
+          </h2>
+          {/* Garis pemisah di bawah header */}
+          <div className="mt-2 w-32 h-[1px] bg-gray-300 mx-auto" />
+        </div>
+      </div>
+      {/* --------------------- */}
+
       <div
         className="
           grid grid-cols-4 gap-6 

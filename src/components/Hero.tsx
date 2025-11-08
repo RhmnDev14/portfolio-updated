@@ -1,6 +1,7 @@
+// Di file Hero.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react"; // Hapus useState
 import dynamic from "next/dynamic";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { ShinyButton } from "@/components/magicui/shiny-button";
@@ -39,8 +40,8 @@ const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
   ssr: false,
 });
 
-export default function Hero() {
-  const [showPdf, setShowPdf] = useState(false);
+export default function Hero({ showPdf, setShowPdf }: { showPdf: boolean; setShowPdf: (value: boolean) => void }) { // Tambahkan props
+  // Hapus const [showPdf, setShowPdf] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = showPdf ? "hidden" : "auto";
@@ -136,7 +137,7 @@ export default function Hero() {
                     <ShinyButton 
                         onClick={() => setShowPdf(false)}
                         // 🆕 Tambahkan warna dan style untuk tombol Back
-                        className="bg-red-400 text-white hover:bg-red-600 transition duration-200 p-2 rounded-lg"
+                        className="bg-gray-200 text-gray-800 hover:bg-gray-400 hover:text-white transition duration-200 p-2 rounded-lg"
                     >
                         <IoIosArrowBack size={20} />
                     </ShinyButton>
@@ -151,7 +152,7 @@ export default function Hero() {
                         {/* TOMBOL 2: PDF (Warna Merah/Aksen PDF) */}
                         <ShinyButton
                             // 🆕 Tambahkan warna dan style untuk tombol PDF
-                            className="bg-blue-400 text-white hover:bg-blue-600 transition duration-200 p-2 rounded-lg"
+                           className="bg-gray-200 text-gray-800 hover:bg-gray-400 hover:text-white transition duration-200 p-2 rounded-lg"
                         >
                             <FaRegFilePdf size={20} />
                         </ShinyButton>

@@ -34,7 +34,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
   }, []);
 
   return (
-    <section className="flex justify-center items-center w-full py-16 px-4">
+    <section className="flex justify-center items-center w-full py-8 md:py-16 lg:py-24 px-4">
       <div className="w-[90%] md:w-[80%] lg:w-[70%] **max-w-screen-xl** mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
         {/* Header */}
         <div className="text-center py-6 border-b border-gray-200 bg-white">
@@ -68,7 +68,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({ experiences }) => {
                 <img
                   src={exp.logoUrl}
                   alt={`${exp.company} logo`}
-                  className="w-16 h-16 object-contain mb-4 rounded-md"
+                  className="w-20 h-20 object-contain mb-4 rounded-md"
                 />
               )}
               <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">

@@ -43,9 +43,10 @@ export default function Carousel() {
         <div
           ref={containerRef}
           className={`
-            flex gap-4 p-4 md:p-8
+            flex gap-4 px-4 py-12 md:p-8
             ${canScroll ? "justify-start" : "justify-center"}
           } items-center overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 bg-white`}
+          // 🚀 PERUBAHAN: Mengubah p-4 menjadi px-4 py-8. Ini meningkatkan padding atas dan bawah (tinggi) di mobile.
           style={{ scrollBehavior: "smooth" }}
         >
           {images.map((src, i) => (

@@ -25,13 +25,13 @@ const navItems = [
   { href: "#certification", label: "Certificates", icon: FaCertificate },
 ];
 
-export default function Navbar() {
+export default function Navbar({ showPdf }: { showPdf: boolean }) { // Tambahkan prop showPdf
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
   
   const pathname = usePathname();
 
-  if (pathname.includes('/cv/preview')) {
+  if (showPdf || pathname.includes('/cv/preview')) { // Tambahkan kondisi showPdf
     return null; 
   }
 

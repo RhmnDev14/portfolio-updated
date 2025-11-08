@@ -1,3 +1,7 @@
+// Di file Home.tsx
+"use client";
+
+import { useState } from "react"; // Tambahkan import useState
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
@@ -53,8 +57,9 @@ interface ExperienceItem {
     description: string;
 }
 
-
 export default function Home() {
+  const [showPdf, setShowPdf] = useState(false); // Tambahkan state showPdf di sini
+
   const pendidikanData: EducationItem[] = [
     {
       date: "Sep 2022 - Sep 2026",
@@ -119,65 +124,57 @@ export default function Home() {
   return (
     <main className="relative flex flex-col min-h-screen bg-white overflow-x-hidden scroll-smooth">
       <div className="relative z-10">
-        <Navbar />
+        <Navbar showPdf={showPdf} /> {/* Pass showPdf ke Navbar */}
 
         {/* 1. Hero Section (Home) */}
-      <section
-        id="home"
-        className="h-screen flex items-center justify-center scroll-mt-16 px-0 md:px-8"
-      >
-        <Hero />
-      </section>
+        <section
+          id="home"
+          className="h-screen flex items-center justify-center scroll-mt-22 px-0 md:px-8 w-full"
+        >
+          <Hero showPdf={showPdf} setShowPdf={setShowPdf} /> {/* Pass showPdf dan setShowPdf ke Hero */}
+        </section>
 
-        {/* 2. 🆕 SKILLS SECTION (Icon Cloud) */}
-      <section
-          id="skills" 
-          className="flex-1 py-12 md:h-screen flex items-center justify-center scroll-mt-16 bg-white"
-      >
-          <div className="text-center p-4 w-full max-w-4xl">
-              {/* Header dengan garis abu di bawahnya */}
-              <div className="inline-block">
-                  <HyperText>Skills</HyperText>
-                  <div className="mt-2 w-500 h-[1px] bg-gray-300 mx-auto" />
-              </div>
-
-              <div className="flex justify-center items-center h-[50vh] md:h-[70vh]">
-                  {/* Menggunakan array images untuk memuat logo */}
-                  <SkillGrid 
-                      images={skillImages} 
-                  />
-              </div>
-          </div>
-      </section>
+        {/* 2. SKILLS SECTION (Icon Cloud) */}
+        <section
+          id="skills"
+          // 🚨 PERBAIKAN CENTERING: w-full dan mx-auto di sini (atau di dalam Skills)
+          className="flex-1 py-12 md:h-screen scroll-mt-24 w-full"
+        >
+          <SkillGrid images={skillImages} />
+        </section>
 
         {/* 3. Projects Section */}
         <section
           id="projects"
-          className="flex-1 py-12 md:h-screen scroll-mt-16"
+          // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
+          className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
         >
           <Projects />
         </section>
 
         {/* 4. Work Experience */}
-          <section
-            id="workexperience"
-            className="flex-1 py-12 md:h-screen scroll-mt-16"
-          >
-            <WorkExperience experiences={experiences} />
-          </section>
+        <section
+          id="workexperience"
+          // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
+          className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
+        >
+          <WorkExperience experiences={experiences} />
+        </section>
 
-          {/* 5. Education */}
-          <section
-            id="education"
-            className="flex-1 py-12 md:h-screen scroll-mt-16"
-          >
-            <EducationList education={pendidikanData} />
-          </section>
+        {/* 5. Education */}
+        <section
+          id="education"
+          // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
+          className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
+        >
+          <EducationList education={pendidikanData} />
+        </section>
 
         {/* 6. Certification */}
         <section
           id="certification"
-          className="flex-1 py-12 md:h-screen scroll-mt-16"
+          // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
+          className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
         >
           <Certifications />
         </section>

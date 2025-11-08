@@ -91,23 +91,25 @@ export default function ProjectsSection() {
       <div className="mt-3 text-sm flex flex-wrap items-center justify-center gap-3">
         <span className="font-semibold">{label}:</span>
         {items.map((item, idx) => (
-          <Image
-            key={idx}
-            src={item.src}
-            alt={item.name}
-            width={40}
-            height={40}
-            title={item.name}
-            className="object-contain"
-          />
+          <div key={idx} className="relative group">
+            <Image
+              src={item.src}
+              alt={item.name}
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+            <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+              {item.name}
+            </span>
+          </div>
         ))}
       </div>
     );
   };
 
   return (
-    <section className="flex justify-center items-center w-full py-8 md:py-16 px-4">
-    {/* Mengurangi py-16 menjadi py-8 untuk mobile (ukuran default) */}
+    <section className="flex justify-center items-center w-full py-8 md:py-16 lg:py-24 px-4">
       <div className="w-[90%] md:w-[80%] lg:w-[70%] max-w-screen-xl mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
         {/* Header */}
         <div className="text-center py-6 border-b border-gray-200 bg-white">
@@ -120,8 +122,8 @@ export default function ProjectsSection() {
         <div
           ref={scrollRef}
           className={`
-            flex gap-8 p-8
-            ${canScroll ? "overflow-x-auto justify-start" : "justify-center"}
+            flex 
+            ${canScroll ? "gap-8 p-8 overflow-x-auto justify-start" : "gap-4 p-2 justify-center"}
             snap-x snap-mandatory scroll-smooth
             scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100
           `}
@@ -131,7 +133,7 @@ export default function ProjectsSection() {
             <div
               key={idx}
               className="
-                flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] 
+                flex-shrink-0 w-[240px] sm:w-[280px] md:w-[320px] 
                 min-h-[400px] 
                 bg-white rounded-2xl border border-gray-100 shadow-md
                 flex flex-col items-center text-center
@@ -149,17 +151,16 @@ export default function ProjectsSection() {
               </div>
 
               <div className="flex-1 flex flex-col justify-center px-4 py-3">
-              {/* Mengganti py-3 menjadi py-4 dan mengubah justify-center menjadi justify-between*/}
                 <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm line-clamp-4">
-                      {project.description}
-                    </p>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm line-clamp-4">
+                    {project.description}
+                  </p>
 
-                    {renderLogos("Integration", project.integration)}
-                    {renderLogos("Tech", project.tech)}
+                  {renderLogos("Integration", project.integration)}
+                  {renderLogos("Tech", project.tech)}
                 </div>
 
                 <div className="mt-4 flex justify-center gap-5">
