@@ -106,8 +106,9 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="flex justify-center items-center w-full py-16 px-4">
-      <div className="w-[90%] md:w-[80%] lg:w-[70%] **max-w-screen-xl** mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <section className="flex justify-center items-center w-full py-8 md:py-16 px-4">
+    {/* Mengurangi py-16 menjadi py-8 untuk mobile (ukuran default) */}
+      <div className="w-[90%] md:w-[80%] lg:w-[70%] max-w-screen-xl mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
         {/* Header */}
         <div className="text-center py-6 border-b border-gray-200 bg-white">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide">
@@ -130,14 +131,15 @@ export default function ProjectsSection() {
             <div
               key={idx}
               className="
-                flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] h-[460px]
+                flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] 
+                min-h-[400px] 
                 bg-white rounded-2xl border border-gray-100 shadow-md
                 flex flex-col items-center text-center
                 hover:shadow-xl hover:-translate-y-1 transition-all duration-300
                 snap-center
               "
             >
-              <div className="relative w-full h-44 rounded-t-2xl overflow-hidden">
+              <div className="relative w-full h-32 rounded-t-2xl overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -147,15 +149,18 @@ export default function ProjectsSection() {
               </div>
 
               <div className="flex-1 flex flex-col justify-center px-4 py-3">
-                <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 text-sm line-clamp-4">
-                  {project.description}
-                </p>
+              {/* Mengganti py-3 menjadi py-4 dan mengubah justify-center menjadi justify-between*/}
+                <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm line-clamp-4">
+                      {project.description}
+                    </p>
 
-                {renderLogos("Integration", project.integration)}
-                {renderLogos("Tech", project.tech)}
+                    {renderLogos("Integration", project.integration)}
+                    {renderLogos("Tech", project.tech)}
+                </div>
 
                 <div className="mt-4 flex justify-center gap-5">
                   {project.repo && (
