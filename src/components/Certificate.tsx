@@ -42,8 +42,9 @@ export default function Carousel() {
         {/* Scrollable area */}
         <div
           ref={containerRef}
-          className={`flex ${
-            canScroll ? "justify-start" : "justify-center"
+          className={`
+            flex gap-4 p-4 md:p-8
+            ${canScroll ? "justify-start" : "justify-center"}
           } items-center overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 bg-white`}
           style={{ scrollBehavior: "smooth" }}
         >
@@ -60,7 +61,7 @@ export default function Carousel() {
                   width={1920}
                   height={1080}
                   // 🆕 Meningkatkan max-h menjadi 50vh untuk mengimbangi penghapusan padding
-                  className="w-full h-auto max-h-[75vh] lg:max-h-[50vh] object-contain border border-gray-300 rounded-xl shadow-md"
+                  className="w-full h-auto max-h-[100vh] lg:max-h-[50vh] object-contain border border-gray-300 rounded-xl shadow-md"
                   priority={i === 0}
                 />
               </div>
