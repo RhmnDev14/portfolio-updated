@@ -18,15 +18,6 @@ import React from "react";
 // Mengimpor TypingAnimation dari magicui
 import { TypingAnimation } from "@/components/magicui/terminal"; 
 
-// Deklarasi Interface untuk Props
-interface ComponentProps {
-  children: React.ReactNode;
-  className?: string; 
-}
-
-// Komponen Dummy pengganti Terminal 
-const AnimatedSpan = ({ children, className }: ComponentProps) => <span className={cn(className)}>{children}</span>;
-
 
 // Data untuk ikon sosial/kontak
 const socialItems = [
@@ -145,8 +136,8 @@ export default function Hero({ showPdf, setShowPdf }: { showPdf: boolean; setSho
                     <HyperText>CV</HyperText>
                     
                     <a
-                        href="/RahmanUmardi.pdf"
-                        download="Rahman-Umardi-CV.pdf"
+                        href="/Rahman-Umardi-CV.pdf"
+                        download="CV-Rahman-Umardi.pdf"
                         className="ml-2"
                     >
                         {/* TOMBOL 2: PDF (Warna Merah/Aksen PDF) */}
@@ -159,7 +150,7 @@ export default function Hero({ showPdf, setShowPdf }: { showPdf: boolean; setSho
                     </a>
                 </div>
                 <div className="flex-1 overflow-auto p-2">
-                    <PdfViewer file="/RahmanUmardi.pdf" />
+                    <PdfViewer file="/Rahman-Umardi-CV.pdf" />
                 </div>
             </div>
         </div>
