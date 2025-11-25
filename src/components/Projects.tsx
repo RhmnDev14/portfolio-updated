@@ -36,6 +36,7 @@ const projects: Project[] = [
       { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg", name: "Firebase" },
       { src: "/minio.png", name: "MinIO" },
       { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", name: "Docker" },
+      { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg", name: "RabbitMQ" },
     ],
   },
   {

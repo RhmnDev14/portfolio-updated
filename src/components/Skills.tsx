@@ -22,7 +22,7 @@ const skillNames: Record<string, string> = {
   "linux-original.svg": "Linux",
   "grpc.png": "Grpc",
   "postman-original.svg":"Postman",
-  "kafka.png":"Kafka",
+  "rabbitmq-original.svg":"RabbitMQ",
   "grafana-original.svg":"Grafana"
 };
 

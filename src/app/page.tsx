@@ -33,9 +33,9 @@ const skillImages: string[] = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", //git
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg", //linux
   "/grpc.png", //grpc
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg", //linux
-  "/kafka.png", //linux
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg", //linux
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg", //postman
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg", //rabbitmq
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg", //grafana
   // Tambahkan logo lain sesuai skills Anda
 ];
 
