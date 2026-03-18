@@ -67,7 +67,7 @@ export default function Hero({ showPdf, setShowPdf }: { showPdf: boolean; setSho
           <div className="flex justify-center w-full">
             <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-xl overflow-hidden transition-transform duration-300">
               <img
-                src="/Gemini_Generated_Image_1ajo331ajo331ajo (1).png"
+                src="/WhatsApp_Image_2025-10-16_at_21.07.32-removebg-preview.png"
                 alt="Profile"
                 className="w-full h-full object-cover"
               />

@@ -5,7 +5,7 @@ import { useState } from "react"; // Tambahkan import useState
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-// import { FlickeringGrid } from "@/components/magicui/flickering-grid"; // Tidak dipakai
+import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import Certifications from "@/components/Certificate";
 import Projects from "@/components/Projects";
 import EducationList from "@/components/Education";
@@ -123,7 +123,16 @@ export default function Home() {
 
   return (
     <main className="relative flex flex-col min-h-screen bg-white overflow-x-hidden scroll-smooth">
-      <div className="relative z-10">
+      <FlickeringGrid
+        className="fixed inset-0 z-0 size-full"
+        squareSize={4}
+        gridGap={6}
+        color="#000000"
+        maxOpacity={0.2}
+        flickerChance={0.5}
+      />
+      
+      <div className="relative z-10 w-full h-full">
         <Navbar showPdf={showPdf} /> {/* Pass showPdf ke Navbar */}
 
         {/* 1. Hero Section (Home) */}
