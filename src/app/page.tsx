@@ -23,10 +23,10 @@ const skillImages: string[] = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",      // Golang
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",  // PostgreSQL
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",       // Redis
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",      // Next.js
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",      // MySQL
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",      // Docker
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", //java
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", //netbeans
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg", // Spring Boot
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", // MongoDb
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fiber/fiber-original.svg", // Fiber
   "/gin.png", // Gin Gonic
