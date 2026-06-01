@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import pypdf; print\\('pypdf', pypdf.__version__\\)\")",
+      "Bash(python3 -c \"import fitz; print\\('pymupdf', fitz.__version__\\)\")",
+      "Read(//private/tmp/**)",
+      "Bash(qpdf --qdf --object-streams=disable /Users/a/Documents/code/portfolio-updated/public/Rahman-Umardi-CV.pdf cv_qdf.pdf)",
+      "Bash(pdftotext -layout /Users/a/Documents/code/portfolio-updated/public/Rahman-Umardi-CV.pdf -)",
+      "Bash(python3 -)",
+      "Bash(pdfinfo /Users/a/Documents/code/portfolio-updated/public/Rahman-Umardi-CV.pdf)",
+      "Bash(python3 -m pip show pymupdf)",
+      "Bash(qpdf --fix-qdf cv_edit.pdf cv_fixed.pdf)",
+      "Bash(qpdf --check cv_fixed.pdf)",
+      "Bash(pdftotext -layout cv_fixed.pdf -)",
+      "Bash(sed -n '6,12p')",
+      "Bash(pdftotext cv_fixed.pdf -)",
+      "Bash(fix-qdf cv_edit.pdf)",
+      "Read(//tmp/**)",
+      "Bash(qpdf --compress-streams=y --object-streams=generate --recompress-flate cv_fixed.pdf cv_final.pdf)",
+      "Bash(cp /Users/a/Documents/code/portfolio-updated/public/Rahman-Umardi-CV.pdf /Users/a/Documents/code/portfolio-updated/public/Rahman-Umardi-CV.pdf.bak)",
+      "Bash(cp cv_final.pdf /Users/a/Documents/code/portfolio-updated/public/Rahman-Umardi-CV.pdf)",
+      "Bash(cd /Users/a/Documents/code/portfolio-updated; rm -f public/Rahman-Umardi-CV.pdf.bak; cp /tmp/Rahman-Umardi-CV.pdf.bak /tmp/CV-original-backup.pdf 2>/dev/null; echo \"removed .bak from public/\"; git status --short public/)",
+      "Bash(cp /Users/a/Documents/code/portfolio-updated/public/Rahman-Umardi-CV.pdf cv_cur.pdf)",
+      "Bash(qpdf --qdf --object-streams=disable cv_cur.pdf cv_qdf.pdf)",
+      "Bash(grep -ac \"Do$\" cv_qdf.pdf)",
+      "Bash(pdftotext -layout cv_cur.pdf -)",
+      "Bash(pdftotext -layout cv_qdf.pdf -)",
+      "Bash(qpdf --check cv_we_fixed.pdf)",
+      "Bash(pdftoppm -png -r 150 -f 1 -l 1 cv_we_fixed.pdf cv_we_prev)",
+      "Bash(qpdf --check cv_fix_fixed.pdf)",
+      "Bash(pdftoppm -png -r 150 -f 1 -l 1 cv_fix_fixed.pdf cv_fx)",
+      "Bash(fix-qdf cv_dotfix.pdf)",
+      "Bash(qpdf --check cv_dotfix_fixed.pdf)",
+      "Bash(pdftotext -layout cv_dotfix_fixed.pdf -)",
+      "Bash(fix-qdf cv_ydot.pdf)",
+      "Bash(qpdf --check cv_ydot_fixed.pdf)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('deps:', d.get\\('dependencies',{}\\)\\); print\\('next:', d.get\\('dependencies',{}\\).get\\('next'\\)\\)\")",
+      "Bash(npm i *)",
+      "Bash(node -e \"console.log\\('installed:', require\\('./package.json'\\).dependencies['@vercel/speed-insights']\\)\")"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}

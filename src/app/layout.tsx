@@ -1,4 +1,5 @@
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "My Portfolio",
@@ -15,6 +16,7 @@ export default function RootLayout({
       <body className="bg-white text-gray-900">
         {children}
         <div id="tooltip-root" />
+        <SpeedInsights />
         </body>
     </html>
   );
