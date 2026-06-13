@@ -36,7 +36,22 @@
       "Bash(qpdf --check cv_ydot_fixed.pdf)",
       "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('deps:', d.get\\('dependencies',{}\\)\\); print\\('next:', d.get\\('dependencies',{}\\).get\\('next'\\)\\)\")",
       "Bash(npm i *)",
-      "Bash(node -e \"console.log\\('installed:', require\\('./package.json'\\).dependencies['@vercel/speed-insights']\\)\")"
+      "Bash(node -e \"console.log\\('installed:', require\\('./package.json'\\).dependencies['@vercel/speed-insights']\\)\")",
+      "Bash(curl -sL https://raw.githubusercontent.com/DavidHDev/react-bits/main/src/assets/lanyard/card.glb -o public/card.glb)",
+      "Bash(curl -sL https://raw.githubusercontent.com/DavidHDev/react-bits/main/src/assets/lanyard/lanyard.png -o public/lanyard.png)",
+      "Bash(npm run *)",
+      "Bash(xxd)",
+      "Bash(npx playwright *)",
+      "Bash(curl -s -o /dev/null -w \"port3000=%{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(ls node_modules/playwright node_modules/playwright-core node_modules/@playwright 2>/dev/null; echo \"---npx cache---\"; find ~/.npm/_npx -maxdepth 3 -name \"playwright\" -type d 2>/dev/null | head; ls ~/Library/Caches/ms-playwright 2>/dev/null | head)",
+      "Read(//Users/a/.npm/_npx/**)",
+      "Read(//Users/a/Library/Caches/ms-playwright/**)",
+      "Bash(node /tmp/lanyard-check.mjs)",
+      "Bash(cp /tmp/lanyard-check.mjs /Users/a/.npm/_npx/e41f203b7505f1fb/lanyard-check.mjs)",
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/lanyard-check.mjs)",
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/net.mjs)",
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/r3f.mjs)",
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/shot.mjs)"
     ],
     "additionalDirectories": [
       "/tmp"

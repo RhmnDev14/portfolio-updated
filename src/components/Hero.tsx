@@ -16,7 +16,14 @@ import { cn } from "@/lib/utils";
 import React from "react"; 
 
 // Mengimpor TypingAnimation dari magicui
-import { TypingAnimation } from "@/components/magicui/terminal"; 
+import { TypingAnimation } from "@/components/magicui/terminal";
+
+// NOTE: Lanyard is imported directly (not via next/dynamic with ssr:false).
+// Using dynamic ssr:false remounts the R3F <Canvas> and orphans its WebGL
+// context ("THREE.WebGLRenderer: Context Lost"), leaving the canvas blank. The
+// component is already a "use client" module and R3F doesn't run WebGL during
+// SSR, so a direct import is both safe and correct.
+import Lanyard from "@/components/Lanyard";
 
 
 // Data untuk ikon sosial/kontak
@@ -63,15 +70,15 @@ export default function Hero({ showPdf, setShowPdf }: { showPdf: boolean; setSho
         {/* Kolom 2: Konten Kanan (Foto di atas Dock Social Media) */}
         <div className="flex flex-col gap-8 md:gap-8 w-full md:w-1/2 order-2 md:order-none items-center"> 
 
-          {/* FOTO */}
+          {/* FOTO — interactive 3D lanyard badge (drag the card!) */}
           <div className="flex justify-center w-full">
-            <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-xl overflow-hidden transition-transform duration-300">
-              <img
-                src="/WhatsApp_Image_2025-10-16_at_21.07.32-removebg-preview.png"
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <Lanyard
+              frontImage="/profile.jpeg"
+              transparent
+              fov={13}
+              position={[0, 0, 22]}
+              className="relative z-0 w-full h-[460px] sm:h-[520px] md:h-[600px] flex justify-center items-center cursor-grab"
+            />
           </div>
 
           {/* DOCK SOCIAL MEDIA */}

@@ -16,6 +16,7 @@ import WorkExperience from "@/components/WorkExperience";
 import { IconCloud } from "@/components/magicui/icon-cloud"; 
 import { HyperText } from "@/components/magicui/hyper-text";
 import { SkillGrid } from "@/components/Skills";
+import Reveal from "@/components/Reveal";
 
 // 🆕 Daftar Gambar/Ikon Keterampilan Inti (Skills)
 // Catatan: Pastikan file-file ini ada di folder /public proyek Anda
@@ -149,7 +150,9 @@ export default function Home() {
           // 🚨 PERBAIKAN CENTERING: w-full dan mx-auto di sini (atau di dalam Skills)
           className="flex-1 py-12 md:h-screen scroll-mt-24 w-full"
         >
-          <SkillGrid images={skillImages} />
+          <Reveal>
+            <SkillGrid images={skillImages} />
+          </Reveal>
         </section>
 
         {/* 3. Projects Section */}
@@ -158,7 +161,9 @@ export default function Home() {
           // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
           className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
         >
-          <Projects />
+          <Reveal>
+            <Projects />
+          </Reveal>
         </section>
 
         {/* 4. Work Experience */}
@@ -167,7 +172,9 @@ export default function Home() {
           // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
           className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
         >
-          <WorkExperience experiences={experiences} />
+          <Reveal>
+            <WorkExperience experiences={experiences} />
+          </Reveal>
         </section>
 
         {/* 5. Education */}
@@ -176,7 +183,9 @@ export default function Home() {
           // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
           className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
         >
-          <EducationList education={pendidikanData} />
+          <Reveal>
+            <EducationList education={pendidikanData} />
+          </Reveal>
         </section>
 
         {/* 6. Certification */}
@@ -185,7 +194,9 @@ export default function Home() {
           // 🚨 PERBAIKAN CENTERING: Tambahkan w-full
           className="flex-1 py-12 md:h-screen scroll-mt-22 w-full"
         >
-          <Certifications />
+          <Reveal>
+            <Certifications />
+          </Reveal>
         </section>
 
         <Footer />
