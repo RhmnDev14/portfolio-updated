@@ -51,7 +51,11 @@
       "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/lanyard-check.mjs)",
       "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/net.mjs)",
       "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/r3f.mjs)",
-      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/shot.mjs)"
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/shot.mjs)",
+      "Bash(echo \"started $!\")",
+      "Bash(curl -s -o /dev/null http://localhost:3000/)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/mobile.mjs)"
     ],
     "additionalDirectories": [
       "/tmp"

@@ -70,7 +70,11 @@ export default function Lanyard({
   }, []);
 
   return (
-    <div className={className}>
+    // [&_canvas]:touch-none sets touch-action:none on the <canvas> itself so
+    // touch gestures reach the card's pointer handlers (drag) on mobile instead
+    // of being hijacked by the browser for page scrolling. (R3F forwards the
+    // Canvas `style` to its wrapper div, not the canvas — so target it here.)
+    <div className={`${className} [&_canvas]:touch-none`}>
       <Canvas
         camera={{ position, fov }}
         dpr={[1, isMobile ? 1.5 : 2]}

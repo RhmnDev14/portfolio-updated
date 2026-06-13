@@ -53,15 +53,15 @@ export default function Hero({ showPdf, setShowPdf }: { showPdf: boolean; setSho
         <div className="hidden md:block w-full md:w-1/2 text-center md:text-left order-1 md:order-none">
           
           {/* 🆕 Baris Pertama: Ditambahkan whitespace-nowrap */}
-          <TypingAnimation 
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-500 dark:text-blue-400 md:drop-shadow-lg leading-snug mb-1 whitespace-nowrap"
+          <TypingAnimation
+            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-600 md:drop-shadow-lg leading-snug mb-1 whitespace-nowrap"
           >
             Hello! I&apos;m Rahman Umardi 👋
           </TypingAnimation>
-          
+
           {/* Baris Kedua: Lebar Maksimal Ditingkatkan menjadi max-w-lg (tetap) */}
-          <TypingAnimation 
-            className="block text-base font-semibold text-gray-700 dark:text-gray-300 mt-3 max-w-lg" 
+          <TypingAnimation
+            className="block text-base font-semibold text-gray-600 mt-3 max-w-lg"
           >
             a showcase of dedication, innovation, and continuous growth in software development.
           </TypingAnimation>
