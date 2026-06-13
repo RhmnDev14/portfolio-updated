@@ -55,7 +55,9 @@
       "Bash(echo \"started $!\")",
       "Bash(curl -s -o /dev/null http://localhost:3000/)",
       "Bash(pkill -f \"next dev\")",
-      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/mobile.mjs)"
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/mobile.mjs)",
+      "Bash(echo \"pid $!\")",
+      "Bash(node /Users/a/.npm/_npx/e41f203b7505f1fb/sections.mjs)"
     ],
     "additionalDirectories": [
       "/tmp"

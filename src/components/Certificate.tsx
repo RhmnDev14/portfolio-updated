@@ -30,14 +30,17 @@ export default function Carousel() {
   }, []);
 
   return (
-  <section className="flex justify-center items-center w-full py-16 px-4">
+  <section className="flex justify-center w-full py-10 px-4">
     {/* Lebar container tetap max-w-6xl */}
-    <div className="w-[90%] md:w-[80%] lg:w-[70%] max-w-6xl mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
-    {/* Header */}
-    <div className="text-center py-6 border-b border-gray-200 bg-white">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-        <HyperText>certification</HyperText>
-      </h2>
+    <div className="w-full max-w-6xl mx-auto">
+    {/* Header (gaya Skills) */}
+    <div className="text-center mb-10">
+      <div className="inline-block">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide">
+          <HyperText>certification</HyperText>
+        </h2>
+        <div className="mt-2 w-32 h-[1px] bg-gray-300 mx-auto" />
+      </div>
     </div>
         {/* Scrollable area */}
         <div
@@ -45,7 +48,7 @@ export default function Carousel() {
           className={`
             flex gap-4 px-4 py-12 md:p-8
             ${canScroll ? "justify-start" : "justify-center"}
-          } items-center overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 bg-white`}
+          } items-center overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100`}
           // 🚀 PERUBAHAN: Mengubah p-4 menjadi px-4 py-8. Ini meningkatkan padding atas dan bawah (tinggi) di mobile.
           style={{ scrollBehavior: "smooth" }}
         >
@@ -72,7 +75,7 @@ export default function Carousel() {
 
         {/* Scroll hint muncul hanya jika bisa scroll */}
         {canScroll && (
-          <div className="text-center py-2 text-sm text-gray-500 bg-white border-t animate-pulse">
+          <div className="text-center py-2 text-sm text-gray-500 animate-pulse">
             ← Swipe to view more certificates →
           </div>
         )}

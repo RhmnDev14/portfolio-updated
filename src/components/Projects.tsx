@@ -110,13 +110,16 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="flex justify-center items-center w-full py-8 md:py-16 lg:py-24 px-4">
-      <div className="w-[90%] md:w-[80%] lg:w-[70%] max-w-screen-xl mx-auto border-[16px] border-white rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50">
-        {/* Header */}
-        <div className="text-center py-6 border-b border-gray-200 bg-white">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide">
-            <HyperText>Projects</HyperText>
-          </h2>
+    <section className="flex justify-center w-full py-10 px-4">
+      <div className="w-full max-w-5xl mx-auto">
+        {/* Header (gaya Skills) */}
+        <div className="text-center mb-10">
+          <div className="inline-block">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide">
+              <HyperText>Projects</HyperText>
+            </h2>
+            <div className="mt-2 w-32 h-[1px] bg-gray-300 mx-auto" />
+          </div>
         </div>
 
         {/* Scrollable Cards */}
@@ -193,7 +196,7 @@ export default function ProjectsSection() {
 
         {/* Scroll hint */}
         {canScroll && (
-          <div className="text-center py-3 text-sm text-gray-500 bg-white border-t animate-pulse">
+          <div className="text-center py-3 text-sm text-gray-500 animate-pulse">
             ← Swipe to view more projects →
           </div>
         )}
